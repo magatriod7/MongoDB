@@ -1,5 +1,5 @@
-import postRoutes from "./routes/api/post";
-import userRoutes from "./routes/api/user";
+import postRoutes from "./routes/post";
+import userRoutes from "./routes/user";
 
 const express = require('express');
 const router = express.Router();
@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 console.log("it works");
-router.post("/api/post", postRoutes);
-router.post("/api/user", userRoutes);
+router.use("/routes/post", postRoutes);
+router.use("/routes/user", userRoutes);
 
 module.exports = router;

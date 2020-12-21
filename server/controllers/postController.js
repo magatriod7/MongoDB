@@ -1,19 +1,19 @@
 import express from "express";
 
 // Model
-import Post from "../../models/post";
+import Post from "../models/post";
 //몽구스 포스트 스키마 import
 
 const router = express.Router();
 
 // api/post
-router.get("/", async (req, res) => {
+export const getPost = async (req, res) => {
   const postFindResult = await Post.find();
   console.log(postFindResult, "All Post Get");
   res.json(postFindResult);
-});
+};
 
-router.post("/", async (req, res, next) => {
+export const postPost = async (req, res, next) => {
   try {
     console.log(req, "req");
     const { title, contents, fileUrl, creator } = req.body;
@@ -27,6 +27,4 @@ router.post("/", async (req, res, next) => {
   } catch (e) {
     console.log(e);
   }
-});
-
-export default router;
+};

@@ -1,0 +1,8 @@
+redux : 상태관리
+react-redux : 리액트에서 리덕스 사용
+redux-saga : 비동기식 상태관리
+react-router-dom : 라우터 관리
+connected-react-router : 리덕스 사용해서 라우터 관리
+bootstrap : css 사용을 위한 부트스트랩
+reactstrap : 부트스트랩을 리액트에서 사용하기 위함
+dotenv

@@ -6,8 +6,7 @@ import helmet from "helmet";
 import cors from "cors";
 
 // Routes
-import postRoutes from "./routes/api/post";
-import userRoutes from "./routes/api/user";
+import router from "./routes";
 import morgan from "morgan";
 
 const app = express();
@@ -30,9 +29,13 @@ mongoose
   })
   .then(() => console.log("MongoDB connecting Success!!"))
   .catch((e) => console.log(e));
+//몽구스 접속
 
-app.get("/");
-app.use("/api/post", postRoutes);
-app.use("/api/user", userRoutes);
+
+app.use("/", router);
+
+//app.use("/routes/post", postRoutes);
+//app.use("/routes/user", userRoutes);
+
 
 export default app;

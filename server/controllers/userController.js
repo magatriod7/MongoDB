@@ -2,21 +2,19 @@ import express from "express";
 import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
-import config from "../../config/index";
+import config from "../config/index";
 const { JWT_SECRET } = config;
 
+
 // Model
-import User from "../../models/user";
+import User from "../models/user";
 
 const router = express.Router();
 
 // @routes     GET api/user
 // @desc       Get all user
 // @access     public
-
-console.log("it works");
-
-router.get("/", async (req, res) => {
+export const getUser = async (req, res) => {
   try {
     const users = await User.find();
     if (!users) throw Error("No users");
@@ -25,13 +23,13 @@ router.get("/", async (req, res) => {
     console.log(e);
     res.status(400).json({ msg: e.message });
   }
-});
+};
 
 // @routes     POST api/user
 // @desc       Register  user
 // @access     public
 
-router.post("/", (req, res) => {
+export const postUser = (req, res) => {
   console.log("user.posting");
   console.log(req);
   const { name, email, password } = req.body;
@@ -75,6 +73,4 @@ router.post("/", (req, res) => {
       });
     });
   });
-});
-
-export default router;
+};
