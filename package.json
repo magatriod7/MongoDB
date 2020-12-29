@@ -1,45 +1,37 @@
 {
-  "name": "mongodb",
+  "name": "blog",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./server/server.js --exec babel-node --ignore './client'"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/magatriod7/MongoDB.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/magatriod7/MongoDB/issues"
-  },
-  "homepage": "https://github.com/magatriod7/MongoDB#readme",
+  "keywords": [],
+  "description": "",
   "dependencies": {
-    "axios": "^0.21.1",
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "eslint": "^6.6.0",
-    "express": "^4.17.1",
-    "helmet": "^4.2.0",
-    "hpp": "^0.2.3",
-    "jsonwebtoken": "^8.5.1",
-    "moment": "^2.29.1",
-    "mongoose": "^5.11.8",
-    "node-sass": "^4.14.1",
-    "pug": "^3.0.0",
-    "request": "^2.88.2",
-    "sass-loader": "^10.1.0"
+    "aws-sdk": "2.706.0",
+    "bcryptjs": "2.4.3",
+    "cors": "2.8.5",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "helmet": "3.22.0",
+    "hpp": "0.2.3",
+    "jsonwebtoken": "8.5.1",
+    "moment": "2.26.0",
+    "mongoose": "5.9.18",
+    "multer": "^1.4.2",
+    "multer-s3": "2.9.0",
+    "path": "0.12.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/node": "^7.12.10",
-    "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.12.11",
-    "babel-loader": "^8.1.0",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.6"
+    "@babel/cli": "7.10.1",
+    "@babel/core": "7.10.2",
+    "@babel/node": "7.10.1",
+    "@babel/polyfill": "7.10.1",
+    "@babel/preset-env": "7.10.2",
+    "babel-loader": "8.1.0",
+    "morgan": "1.10.0",
+    "nodemon": "2.0.4"
   }
 }
