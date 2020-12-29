@@ -15,5 +15,5 @@ const CategorySchema = new mongoose.Schema({
 });
 
 const Category = mongoose.model("category", CategorySchema);
-//카테고리라는 몽구스 모델을 외부로 export함
+
 export default Category;

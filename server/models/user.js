@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["Master" ,"MainJoin", "SubJoin", "User"],
+    enum: ["MainJuin", "SubJuin", "User"],
     default: "User",
   },
   register_date: {
