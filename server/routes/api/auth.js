@@ -15,7 +15,7 @@ const router = express.Router();
 // @access   Public
 router.post("/", (req, res) => {
   const { email, password } = req.body;
-
+  console.log("auth")
   // Simple Validation
   if (!email || !password) {
     return res.status(400).json({ msg: "모든 필드를 채워주세요" });
@@ -53,7 +53,8 @@ router.post("/logout", (req, res) => {
   res.json("로그아웃 성공");
 });
 
-router.get("/user", auth, async (req, res) => {
+router.get("/user", auth, async (req, res) => { 
+  console.log("server_user_check")
   try {
     const user = await User.findById(req.user.id).select("-password");
     if (!user) throw Error("유저가 존재하지 않습니다");

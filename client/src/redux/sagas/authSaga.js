@@ -13,24 +13,28 @@ import {
   CLEAR_ERROR_REQUEST,
   CLEAR_ERROR_FAILURE,
   CLEAR_ERROR_SUCCESS,
+  USER_LOADING_REQUEST,
+  USER_LOADING_FAILURE,
+  USER_LOADING_SUCCESS,
 } from "../types";
 
 // Login
 
 const loginUserAPI = (loginData) => {
-  console.log(loginData, "loginData");
+  console.log(loginData, "loginData", "loginUserAPI 콘솔");
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  return axios.post("api/auth", loginData, config);
+  return axios.post("api/auth", loginData, config);//axios를 통하여 로그인 신호를 준다. config를 통해 받을 데이터 타입을 정할 수 있다. json 타입
 };
 
 function* loginUser(action) {
   try {
-    const result = yield call(loginUserAPI, action.payload);
-    console.log(result);
+    const result = yield call(loginUserAPI, action.payload);//반환된 값을 action.payload에 넣게 되는데 이를 result에 다시 넣는다.
+    //console.log(loginUserAPI(action.payload), "아래와 값이 같이 나오지만 이 경우 promise 안에 들어 있다.");
+    console.log(result, "loginUser 콘솔");
     yield put({
       type: LOGIN_SUCCESS,
       payload: result.data,
@@ -44,7 +48,7 @@ function* loginUser(action) {
 }
 
 function* watchLoginUser() {
-  yield takeEvery(LOGIN_REQUEST, loginUser);
+  yield takeEvery(LOGIN_REQUEST, loginUser);//모든 로그인 request가 들어올 때마다 loginUser을 실행한다.
 }
 
 // LOGOUT
@@ -113,11 +117,62 @@ function* watchclearError() {
   yield takeEvery(CLEAR_ERROR_REQUEST, clearError);
 }
 
+
+//userLoading
+
+
+const userLoadingAPI = (token) => {
+  console.log(token)
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  if(token) {
+    config.headers["x-auth-token"] = token
+  }
+  return axios.get("api/auth/user", config);//axios를 통하여 로그인 신호를 준다. config를 통해 받을 데이터 타입을 정할 수 있다. json 타입
+};
+
+function* userLoading(action) {
+  try {
+    console.log(action, "userLoading")
+    const result = yield call(userLoadingAPI, action.payload);//반환된 값을 action.payload에 넣게 되는데 이를 result에 다시 넣는다.
+    console.log(userLoadingAPI(action.payload),"아래와 값이 같이 나오지만 이 경우 promise 안에 들어 있다.");
+    console.log(result, "userLoading 콘솔");
+    yield put({
+      type: USER_LOADING_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: USER_LOADING_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
+function* watchuserLoading() {
+  yield takeEvery(USER_LOADING_REQUEST, userLoading);//모든 로그인 request가 들어올 때마다 loginUser을 실행한다.
+}
+
+
+
+
+
+
+
+
+
+
+
+
 export default function* authSaga() {
   yield all([
     fork(watchLoginUser),
     fork(watchlogout),
     fork(watchregisterUser),
     fork(watchclearError),
+    fork(watchuserLoading),
   ]);
 }

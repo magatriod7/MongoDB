@@ -1,9 +1,9 @@
+import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
 import config from "./config";
 import hpp from "hpp";
 import helmet from "helmet";
-import cors from "cors";
 
 // Routes
 import postRoutes from "./routes/api/post";

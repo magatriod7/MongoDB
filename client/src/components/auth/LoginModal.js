@@ -21,13 +21,14 @@ const LoginModal = () => {
     email: "",
     password: "",
   });
+  //const sample = 'sample'
   const dispatch = useDispatch();
-  const { errorMsg } = useSelector((state) => state.auth);
+  const { errorMsg } = useSelector((state) => state.auth);//에러 메세지를 가져온다.
   useEffect(() => {
     try {
       setLocalMsg(errorMsg);
     } catch (e) {
-      console.log(e);
+      console.log(`로그인 메세지 에러 ${e}`);
     }
   }, [errorMsg]);
 
@@ -36,9 +37,11 @@ const LoginModal = () => {
       type: CLEAR_ERROR_REQUEST,
     });
     setModal(!modal);
+    console.log('toggle')
   };
 
   const onChange = (e) => {
+    //console.log('change1')
     setValues({
       ...form,
       [e.target.name]: e.target.value,
@@ -46,14 +49,17 @@ const LoginModal = () => {
   };
 
   const onSubmit = (e) => {
+    console.log('submit')
     e.preventDefault();
     const { email, password } = form;
     const user = { email, password };
-    console.log(user);
+    //console.log(user);
     dispatch({
+//      console.log('dispatch');
       type: LOGIN_REQUEST,
       payload: user,
     });
+    console.log('dispatch');
   };
   return (
     <div>

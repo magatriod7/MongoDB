@@ -16,13 +16,13 @@ import LoginModal from "../components/auth/LoginModal";
 import RegisterModal from "../components/auth/RegisterModal";
 
 const AppNavbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, user, userRole } = useSelector(
-    (state) => state.auth
+  const [isOpen, setIsOpen] = useState(false);//초기값 부여 및 setIsOpen의 값이 변하면 isOpen의 값이 변한다
+  const { isAuthenticated, user, userRole } = useSelector(//store에서 state를 가져온다. 즉, authenticated, user, userRole를 받아온다.
+    (state) => state.auth//state.auth 받아 옴 
   );
   console.log(userRole, "UserRole");
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();//액션을 파라미터로 전달한다.
 
   const onLogout = useCallback(() => {
     dispatch({
@@ -30,13 +30,17 @@ const AppNavbar = () => {
     });
   }, [dispatch]);
 
+
+
   useEffect(() => {
     setIsOpen(false);
-  }, [user]);
+  }, [user]);//유저가 변할 때 isopen이 꺼진다.
+
+
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
-  };
+  };//isOpen의 값을 토글한다.
 
   const addPostClick = () => {
     dispatch({
@@ -44,13 +48,14 @@ const AppNavbar = () => {
     });
   };
 
+
   const authLink = (
     <Fragment>
       <NavItem>
         {userRole === "MainJuin" ? (
           <Form className="col mt-2">
             <Link
-              to="/post"
+              to="posts"
               className="btn btn-success block text-white px-3"
               onClick={addPostClick}
             >
@@ -99,12 +104,18 @@ const AppNavbar = () => {
     </Fragment>
   );
 
+
+
+
+
+
+
   return (
     <Fragment>
       <Navbar color="dark" dark expand="lg" className="sticky-top">
         <Container>
           <Link to="/" className="text-white text-decoration-none">
-            Side Project's Blog(사플 블로그)
+            MAZE_HOME_PAGE
           </Link>
           <NavbarToggler onClick={handleToggle} />
           <Collapse isOpen={isOpen} navbar>

@@ -50,12 +50,12 @@ router.post("/", (req, res) => {
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
         if (err) throw err;
-        newUser.password = hash;
-        newUser.save().then((user) => {
+        newUser.password = hash;//암호화된 비밀번호 넣음
+        newUser.save().then((user) => {//암호화된 비밀번호 저장
           jwt.sign(
             { id: user.id },
             JWT_SECRET,
-            { expiresIn: 3600 },
+            { expiresIn: 3600 },//만기일 적용: 3600초 1시간 후에 다시 로그인 해야함
             (err, token) => {
               if (err) throw err;
               res.json({
@@ -64,7 +64,7 @@ router.post("/", (req, res) => {
                   id: user.id,
                   name: user.name,
                   email: user.email,
-                },
+                },//후에 json 타입으로 응답을 해줌 (user안에 들어 있음)
               });
             }
           );
