@@ -55,7 +55,7 @@ const AppNavbar = () => {
         {userRole === "MainJuin" ? (
           <Form className="col mt-2">
             <Link
-              to="posts"
+              to="/post"
               className="btn btn-success block text-white px-3"
               onClick={addPostClick}
             >
@@ -63,8 +63,8 @@ const AppNavbar = () => {
             </Link>
           </Form>
         ) : (
-          ""
-        )}
+            ""
+          )}
       </NavItem>
       <NavItem className="d-flex justify-content-center">
         <Form className="col mt-2">
@@ -75,10 +75,10 @@ const AppNavbar = () => {
               </Button>
             </Link>
           ) : (
-            <Button outline color="light" className="px-3" block>
-              <strong>No User</strong>
-            </Button>
-          )}
+              <Button outline color="light" className="px-3" block>
+                <strong>No User</strong>
+              </Button>
+            )}
         </Form>
       </NavItem>
       <NavItem>

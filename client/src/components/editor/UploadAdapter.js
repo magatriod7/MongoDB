@@ -1,3 +1,5 @@
+//ckeditor 관련 복사해온 소스
+
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -36,7 +38,7 @@ class MyUploadAdapter {
     // could be different.
     xhr.open(
       "POST",
-      `${process.env.REACT_APP_BASIC_SERVER_URL}/api/post/image`,
+      `${process.env.REACT_APP_BASIC_SERVER_URL}/api/post/image`,//이부분 고침
       true
     );
     xhr.responseType = "json";
