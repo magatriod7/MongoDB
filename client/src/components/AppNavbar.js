@@ -43,6 +43,7 @@ const AppNavbar = () => {
   };//isOpen의 값을 토글한다.
 
   const addPostClick = () => {
+    console.log("POSTS_WRITE_REQUEST")
     dispatch({
       type: POSTS_WRITE_REQUEST,
     });

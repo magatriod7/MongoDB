@@ -13,24 +13,35 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-editor-classic/src/classiceditor";
 import { editorConfiguration } from "../../components/editor/EditorConfig";
 import Myinit from "../../components/editor/UploadAdapter";
-import { set } from "mongoose";
+//import { set } from "mongoose";
+import { POST_UPLOADING_REQUEST } from "../../redux/types";
 import dotenv from "dotenv";
 dotenv.config();
 
 const PostWrite = () => {
-    const { isAuthenticated } = useSelector((state) => state.auth);
-    const [form, setValues] = useState({ title: "", contents: "", fileUrl: "" });
-    const dispatch = useDispatch();
+    const { isAuthenticated } = useSelector((state) => state.auth);  ////store에서 state를 가져온다. 즉, authenticated, user, userRole를 받아온다.
+    const [form, setValues] = useState({ title: "", contents: "", fileUrl: "" });// inputstate를 저장할 useState
+    const dispatch = useDispatch();//reducer dispatch
 
-    const onChange = (e) => {
+    const onSubmit = async (e) => {
+        await e.preventDefault();
+        const { title, contents, fileUrl, category } = form;
+        const token = localStorage.getItem("token");
+        const body = { title, contents, fileUrl, category, token };
+        dispatch({
+            type: POST_UPLOADING_REQUEST,
+            payload: body,
+        });
+    };
+    const onChange = (e) => { //리액트에서 input을 사용하기 위해서는 이와 같은 과정이 필요하다
         setValues({
             ...form,
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value,//각 인풋의 name을 value값으로 저장함
         });
     };
 
-    const getDataFromCKEditor = (event, editor) => {
-        const data = editor.getData();//에디터에 getdata(ckeditor 함수)를 통해 데이터 넣음
+    const getDataFromCKEditor = (event, editor) => {//맨 처음 올린 사진만 보일 수 있도록 하는 세팅
+        const data = editor.getData();//getdata(ckeditor 함수)를 통해 에디터에 올려진 데이터를 가져올 수 있다.
         console.log(`${data} 데이터 가져옴`);
 
         if (data && data.match("<img src=")) {//데이터가 존재하고 img src로 시작하는 것이 있다고 하면
@@ -44,13 +55,13 @@ const PostWrite = () => {
 
             for (let i = 0; i < ext_name.length; i++) {
                 if (data.match(ext_name[i])) {//확장자를 살펴보고
-                    console.log(`${data.indexOf(`${ext_name[i]}`)}`);
+                    console.log(data.indexOf(`${ext_name[i]}`), "확장자 위치 살펴봄");
                     ext_name_find = ext_name[i];//맞는 확장자를 정해준다
                     whereImg_end = data.indexOf(`${ext_name[i]}`);
                 }
             }
             console.log(`확장자 확인 ${ext_name_find}`);
-            console.log(whereImg_end, "whereImg_end");
+            console.log(whereImg_end, "whereImg_end", "확장자 위치");
 
             if (ext_name_find === "jpeg") {
                 result_Img_Url = data.substring(whereImg_start + 10, whereImg_end + 4);
@@ -59,7 +70,7 @@ const PostWrite = () => {
             }
             //확장자를 제외한 값을 잘라준다.
 
-            console.log(result_Img_Url, "result_Img_Url");
+            console.log(result_Img_Url, "이미지 경로");
             setValues({
                 ...form,
                 fileUrl: result_Img_Url,
@@ -77,7 +88,7 @@ const PostWrite = () => {
     return (
         <div>
             {isAuthenticated ? (
-                <Form>
+                <Form onSubmit={onSubmit}>
                     <FormGroup className="mb-3">
                         <Label for="title">Title</Label>
                         <Input
@@ -113,7 +124,7 @@ const PostWrite = () => {
                             className="mt-3 col-md-2 offset-md-10 mb-3"
                         >
                             제출하기
-            </Button>
+                        </Button>
                     </FormGroup>
                 </Form>
             ) : (

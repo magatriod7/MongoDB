@@ -16,7 +16,7 @@
 }
 
 #main-body {
-  min-width: 90vh;
+  min-height: 90vh;
 }
 
 .card-img-top {
@@ -48,3 +48,8 @@ html {
   overflow-x: hidden;
 }
 // html 흔들림 잡음
+
+
+textarea {
+  resize: none;
+}

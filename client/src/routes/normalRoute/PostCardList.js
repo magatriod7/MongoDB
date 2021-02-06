@@ -9,8 +9,10 @@ import PostCardOne from "../../components/post/PostCardOne";
 const PostCardList = () => {
   const { posts } = useSelector((state) => state.post);
   const dispatch = useDispatch();
+  //console.log(posts, "posts")
 
   useEffect(() => {
+    //console.log("포스트카드리스트 테스팅");
     dispatch({ type: POSTS_LOADING_REQUEST });
   }, [dispatch]);
 

@@ -3,13 +3,18 @@ import express from 'express'
 const router = express.Router();
 
 import Post from "../../models/post"
+import Category from "../../models/category"
+import User from "../../models/user"
 import auth from "../../middleware/auth"
+import moment from "moment"
 
 import multer from "multer";//파일을 주고 받는 것을 도와주는 라이브러리
 import multerS3 from "multer-s3";//s3 관련 multer
 import path from "path";//경로를 쉽게 파악 가능
 import AWS from "aws-sdk";//아마존 서버 이용이 용이하기 위한 개발자 도구
 import dotenv from "dotenv";
+import Comment from "../../models/comment";
+import { isNullOrUndefined } from 'util';
 dotenv.config();
 
 const s3 = new AWS.S3({
@@ -37,7 +42,7 @@ const uploadS3 = multer({
 
 router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {//사진은 5개 까지만 가능하다
   try {
-    console.log(req.files.map((v) => v.location));//image란 주소를 통해서 배열 형태로 사진을 upload를하면 주소가 req에 들어오게 되는데 들어온 주소 중 file 안의 location 이란 곳이 있는데 그때 각각을 출력해주세요
+    //console.log(req.files.map((v) => v.location));//image란 주소를 통해서 배열 형태로 사진을 upload를하면 주소가 req에 들어오게 되는데 들어온 주소 중 file 안의 location 이란 곳이 있는데 그때 각각을 출력해주세요
     res.json({ uploaded: true, url: req.files.map((v) => v.location) });//업로드 되었고 url 은 req. files.location에 있습니다.
   } catch (e) {
     console.error(e);
@@ -48,22 +53,137 @@ router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {//
 // api/post
 router.get("/", async (req, res) => {
   const postFindResult = await Post.find();
-  console.log(postFindResult, "All Post Get");
+  //console.log(postFindResult, "All Post Get");
   res.json(postFindResult);
 });
-router.post("/", auth, async (req, res, next) => {
+
+// @route POST api/post
+// @desc Create a Post
+// @access Private
+
+router.post("/", auth, uploadS3.none(), async (req, res, next) => {
   try {
-    console.log(req, "req");
-    const { title, contents, fileUrl, creator } = req.body;
+    console.log(req, "req 포스팅부분 확인까지 왔습니다 흑흑");
+    const { title, contents, fileUrl, creator, category } = req.body;
     const newPost = await Post.create({
       title,
       contents,
       fileUrl,
-      creator,
+      creator: req.user.id,
+      data: moment().format("YYYY-MM-DD hh:mm:ss"),
     });
-    res.json(newPost);
+
+    const findResult = await Category.findOne({
+      categoryName: category,
+    });
+
+    console.log(findResult, "Find Result!!!!");
+
+    if (findResult === undefined || findResult === null) {
+      const newCategory = await Category.create({
+        categoryName: category,
+      });
+      await Post.findByIdAndUpdate(newPost._id, {//위에서 만든 newPost.id로 찾고 category에 newCategory.id를 배열로 넣어달라는 뜻 $(배열로 넣다)
+        $push: { category: newCategory._id },
+      });
+      await Category.findByIdAndUpdate(newCategory._id, {//카테고리에서.id로 찾고 posts 안에 newPost.id를 넣어주세요
+        $push: { posts: newPost._id },
+      });
+      await User.findByIdAndUpdate(req.user.id, {//유저 id로 찾고  post 안에 _id를 넣어주세요
+        $push: {
+          posts: newPost._id,
+        },
+      });
+    } else {//카테고리가 모두 존재 한다면
+      await Category.findByIdAndUpdate(findResult._id, {
+        $push: { posts: newPost._id },
+      });
+      await Post.findByIdAndUpdate(newPost._id, {
+        category: findResult._id,
+      });
+      await User.findByIdAndUpdate(req.user.id, {
+        $push: {
+          posts: newPost._id,
+        },
+      });
+    }
+    console.log("serverpost 포스팅 완료");
+    return res.redirect(`/api/post/${newPost._id}`);
   } catch (e) {
     console.log(e);
+  }
+});
+
+// @route POST/post/:id
+// @desc Detail Post
+// @access public
+
+router.get("/:id", async (req, res, next) => {
+  //console.log("겟에 일단 들어는 왔는데....")
+  try {
+    //console.log("get id post 에에에에에에ㅔ에에에에엥???? 이게 안되고 있었는데?????")
+    const post = await Post.findById(req.params.id)
+      .populate({ path: "creator", select: "name" })//populate는 연결된 것들을  만들어주라고 요청하는 것
+      .populate({ path: "category", select: "categoryName" });
+    post.views += 1;
+    post.save();
+    console.log(post, "router.get");
+    res.json(post);
+  } catch (e) {
+    console.log("여기서 에러뜸");
+    console.error(e);
+    next(e);
+  }
+});
+
+
+// [Comments Route]
+// @route Get api/post/:id/comments
+// @desc  Get All Comments
+// @access public
+
+router.get("/:id/comments", async (req, res) => {
+  try {
+    const comment = await Post.findById(req.params.id).populate({
+      path: "comments",
+    });
+    const result = comment.comments;
+    console.log(result, "comment load");
+    res.json(result);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.post("/:id/comments", async (req, res, next) => {
+  console.log(req.body, "dddddddddsadasdasjfkjsahvklsdjvlasㄴㅁ야ㅓㅁ나롬날");
+  const newComment = await Comment.create({
+    contents: req.body.contents,
+    creator: req.body.userId,
+    creatorName: req.body.userName,
+    post: req.body.id,
+    date: moment().format("YYYY-MM-DD hh:mm:ss"),
+  });
+  console.log(newComment, "newComment");
+
+  try {
+    await Post.findByIdAndUpdate(req.body.id, {
+      $push: {
+        comments: newComment._id,
+      },
+    });
+    await User.findByIdAndUpdate(req.body.userId, {
+      $push: {
+        comments: {
+          post_id: req.body.id,
+          comment_id: newComment._id,
+        },
+      },
+    });
+    res.json(newComment);
+  } catch (e) {
+    console.log(e);
+    next(e);
   }
 });
 

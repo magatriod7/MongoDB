@@ -35,7 +35,8 @@
     "path": "^0.12.7",
     "pug": "^3.0.0",
     "request": "^2.88.2",
-    "sass-loader": "^10.1.0"
+    "sass-loader": "^10.1.0",
+    "util": "^0.12.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
