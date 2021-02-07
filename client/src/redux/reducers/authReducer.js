@@ -14,6 +14,9 @@ import {
   USER_LOADING_REQUEST,
   USER_LOADING_SUCCESS,
   USER_LOADING_FAILURE,
+  PASSWORD_EDIT_UPLOADING_REQUEST,
+  PASSWORD_EDIT_UPLOADING_SUCCESS,
+  PASSWORD_EDIT_UPLOADING_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -26,10 +29,21 @@ const initialState = {
   userRole: "",
   errorMsg: "",
   successMsg: "",
+  previousMatchMsg: "",
 };
+
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+
+
+
+
+
+
+
+
+
     case REGISTER_REQUEST:
     case LOGIN_REQUEST:
     case LOGOUT_REQUEST:
@@ -78,45 +92,102 @@ const authReducer = (state = initialState, action) => {
         userRole: null,
         errorMsg: "",
       };
+
+
+
+
+
+
+
+
+
+
+
+
+    case USER_LOADING_REQUEST:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case USER_LOADING_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+        isLoading: false,
+        user: action.payload,
+        userId: action.payload._id,
+        userName: action.payload.name,
+        userRole: action.payload.role
+      };
+    case USER_LOADING_FAILURE:
+      return {
+        ...state,
+        user: null,
+        isAuthenticated: false,
+        isLoading: false,
+        userRole: "",
+        errorMsg: null,
+      };
+
+
+
+
+
+
+
+
+
+    case PASSWORD_EDIT_UPLOADING_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case PASSWORD_EDIT_UPLOADING_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        successMsg: action.payload.data.success_msg,
+        errorMsg: "",
+        previousMsg: "",
+      };
+    case PASSWORD_EDIT_UPLOADING_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        successMsg: "",
+        errorMsg: action.payload.data.fail_msg,//새로운 비밀번호가 일치하지 않습니다
+        previousMatchMsg: action.payload.data.match_msg,//비밀번호가 일치하지 않습니다.
+      };
+
+
+
+
+
+
+
+
+
+
+
     case CLEAR_ERROR_REQUEST:
       return {
         ...state,
-        errorMsg: null,
       };
     case CLEAR_ERROR_SUCCESS:
       return {
         ...state,
-        errorMsg: null,
+        errorMsg: "",
+        previousMatchMsg: "",
       };
     case CLEAR_ERROR_FAILURE:
       return {
         ...state,
-        errorMsg: null,
+        errorMsg: "Clear Error Fail",
+        previousMatchMsg: "Clear Error Fail",
       };
-      case USER_LOADING_REQUEST:
-        return {
-          ...state,
-          isLoading: true
-        };
-      case USER_LOADING_SUCCESS:
-        return {
-          ...state,
-          isAuthenticated: true,
-          isLoading: false,
-          user:action.payload,
-          userId: action.payload._id,
-          userName: action.payload.name,
-          userRole: action.payload.role
-        };
-      case USER_LOADING_FAILURE:
-        return {
-          ...state,
-          user:null,
-          isAuthenticated: false,
-          isLoading: false,
-          userRole: "",
-          errorMsg: null,
-        };
+
+
+
     default:
       return state;
   }

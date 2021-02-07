@@ -24,6 +24,9 @@ import {
   CATEGORY_FIND_FAILURE,
   CATEGORY_FIND_SUCCESS,
   CATEGORY_FIND_REQUEST,
+  SEARCH_SUCCESS,
+  SEARCH_FAILURE,
+  SEARCH_REQUEST,
 } from "../types";
 
 // All Posts load
@@ -332,12 +335,13 @@ function* watchPostEditUpload() {
 
 // Category Find
 const CategoryFindAPI = (payload) => {
-  return axios.get(`/api/post/category/${encodeURIComponent(payload)}`);
+  return axios.get(`/api/post/category/${encodeURIComponent(payload)}`);//encodeURIComponent 인코딩 과정
 };
 
 function* CategoryFind(action) {
   try {
     const result = yield call(CategoryFindAPI, action.payload);
+    console.log(result, "카테고리 파인드 에이피아이")
     yield put({
       type: CATEGORY_FIND_SUCCESS,
       payload: result.data,
@@ -359,6 +363,32 @@ function* watchCategoryFind() {
 
 
 
+// Search Find
+const SearchResultAPI = (payload) => {
+  return axios.get(`/api/search/${encodeURIComponent(payload)}`);
+};
+
+function* SearchResult(action) {
+  try {
+    const result = yield call(SearchResultAPI, action.payload);
+    yield put({
+      type: SEARCH_SUCCESS,
+      payload: result.data,
+    });
+    yield put(push(`/search/${encodeURIComponent(action.payload)}`));
+  } catch (e) {
+    yield put({
+      type: SEARCH_FAILURE,
+      payload: e,
+    });
+    yield put(push("/"));
+  }
+}
+
+function* watchSearchResult() {
+  yield takeEvery(SEARCH_REQUEST, SearchResult);
+}
+
 
 
 export default function* postSaga() {
@@ -370,5 +400,6 @@ export default function* postSaga() {
     fork(watchPostEditLoad),
     fork(watchPostEditUpload),
     fork(watchCategoryFind),
+    fork(watchSearchResult),
   ]);
 }

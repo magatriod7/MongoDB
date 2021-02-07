@@ -53,8 +53,12 @@ router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {//
 // api/post
 router.get("/", async (req, res) => {
   const postFindResult = await Post.find();
+  const categoryFindResult = await Category.find();
+  const result = { postFindResult, categoryFindResult };
+
+  res.json(result);
   //console.log(postFindResult, "All Post Get");
-  res.json(postFindResult);
+  //res.json(postFindResult);
 });
 
 // @route POST api/post
@@ -215,11 +219,11 @@ router.delete("/:id", auth, async (req, res) => {
     { posts: req.params.id },
     { $pull: { posts: req.params.id } },
     { new: true }//이것을 적용해야 업데이트가 적용된다.
-  );
+  );//카테고리를 적음
 
   if (CategoryUpdateResult.posts.length === 0) {
     await Category.deleteMany({ _id: CategoryUpdateResult });
-  }
+  }//카테고리를 지움
   return res.json({ success: true });
 });
 
@@ -243,7 +247,6 @@ router.post("/:id/edit", auth, async (req, res, next) => {
   const {
     body: { title, contents, fileUrl, id },
   } = req;
-
   try {
     const modified_post = await Post.findByIdAndUpdate(
       id,
@@ -262,6 +265,35 @@ router.post("/:id/edit", auth, async (req, res, next) => {
     next(e);
   }
 });
+
+
+
+
+
+
+
+
+
+router.get("/category/:categoryName", async (req, res, next) => {
+  try {
+    const result = await Category.findOne(
+      {
+        categoryName: {
+          $regex: req.params.categoryName,//mongodb 정규표현 다음 내용의 글들을 찾아라!
+          $options: "i",//mongodb 정규표현 덜 민감하게 찾는다
+        },
+      },//posts부분에서 찾아라
+      "posts"
+    ).populate({ path: "posts" });//posts 저장
+    console.log(result, "Category Find result");
+
+    res.send(result);
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+});
+
 
 
 export default router;

@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { LOGOUT_REQUEST, POSTS_WRITE_REQUEST } from "../redux/types";
 import LoginModal from "../components/auth/LoginModal";
 import RegisterModal from "../components/auth/RegisterModal";
+import SearchInput from "./search/searchInput";
 
 const AppNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);//초기값 부여 및 setIsOpen의 값이 변하면 isOpen의 값이 변한다
@@ -70,7 +71,7 @@ const AppNavbar = () => {
       <NavItem className="d-flex justify-content-center">
         <Form className="col mt-2">
           {user && user.name ? (
-            <Link to="#">
+            <Link to={`/user/${user.name}/profile`}>
               <Button outline color="light" className="px-3" block>
                 <strong>{user ? `Welcome ${user.name}` : ""}</strong>
               </Button>
@@ -120,6 +121,7 @@ const AppNavbar = () => {
           </Link>
           <NavbarToggler onClick={handleToggle} />
           <Collapse isOpen={isOpen} navbar>
+            <SearchInput isOpen={isOpen} />
             <Nav className="ml-auto d-felx justify-content-around" navbar>
               {isAuthenticated ? authLink : guestLink}
             </Nav>

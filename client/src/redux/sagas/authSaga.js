@@ -16,6 +16,9 @@ import {
   USER_LOADING_REQUEST,
   USER_LOADING_FAILURE,
   USER_LOADING_SUCCESS,
+  PASSWORD_EDIT_UPLOADING_SUCCESS,
+  PASSWORD_EDIT_UPLOADING_REQUEST,
+  PASSWORD_EDIT_UPLOADING_FAILURE,
 } from "../types";
 
 // Login
@@ -162,6 +165,47 @@ function* watchuserLoading() {
 
 
 
+// Edit Password
+
+const EditPasswordAPI = (payload) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const token = payload.token;
+
+  if (token) {
+    config.headers["x-auth-token"] = token;
+  }
+  return axios.post(`/api/user/${payload.userName}/profile`, payload, config);
+};
+
+function* EditPassword(action) {
+  try {
+    console.log(action, "EditPassword");
+    const result = yield call(EditPasswordAPI, action.payload);
+    console.log(result);
+    console.log(result.data);
+    console.log("여기서 멈춰부렸따");
+    yield put({
+      type: PASSWORD_EDIT_UPLOADING_SUCCESS,
+      payload: result,
+    });
+  } catch (e) {
+    console.log(e)
+    console.log(action)
+    yield put({
+      type: PASSWORD_EDIT_UPLOADING_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
+function* watchEditPassword() {
+  yield takeEvery(PASSWORD_EDIT_UPLOADING_REQUEST, EditPassword);
+}
+
 
 
 
@@ -175,5 +219,6 @@ export default function* authSaga() {
     fork(watchregisterUser),
     fork(watchclearError),
     fork(watchuserLoading),
+    fork(watchEditPassword),
   ]);
 }
