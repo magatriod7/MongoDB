@@ -127,7 +127,7 @@ router.get("/:id", async (req, res, next) => {
       .populate({ path: "category", select: "categoryName" });
     post.views += 1;
     post.save();
-    console.log(post, "router.get");
+    //console.log(post, "router.get");
     res.json(post);
   } catch (e) {
     console.log("여기서 에러뜸");
@@ -144,19 +144,24 @@ router.get("/:id", async (req, res, next) => {
 
 router.get("/:id/comments", async (req, res) => {
   try {
+    //console.log("\n 1", req.params, "1 \n")
     const comment = await Post.findById(req.params.id).populate({
       path: "comments",
     });
+    //console.log("1 \n")
     const result = comment.comments;
+    //console.log("1 \n")
     console.log(result, "comment load");
+    //console.log("1 \n")
     res.json(result);
+    //console.log("1 \n")
   } catch (e) {
-    console.log(e);
+    //console.log("sfajslfksalas;kv;", e, "여기ㅇㄴㄴ윧ㄹ걷ㄱㅎㄴ오ㅓㅓㄹ옹ㄴㅇㅁ요");
   }
 });
 
 router.post("/:id/comments", async (req, res, next) => {
-  console.log(req.body, "dddddddddsadasdasjfkjsahvklsdjvlasㄴㅁ야ㅓㅁ나롬날");
+  //console.log(req.body, "dddddddddsadasdasjfkjsahvklsdjvlasㄴㅁ야ㅓㅁ나롬날");
   const newComment = await Comment.create({
     contents: req.body.contents,
     creator: req.body.userId,
@@ -181,6 +186,77 @@ router.post("/:id/comments", async (req, res, next) => {
       },
     });
     res.json(newComment);
+  } catch (e) {
+    //console.log(e, "여기ㅁㄴㅇㅁㄴㄹㄴㅁㅍㅌ큩츌ㅇㅎㄴㄻㄴㅇ요");
+    next(e);
+  }
+});
+
+
+
+
+// @route    Delete api/post/:id
+// @desc     Delete a Post
+// @access   Private
+
+router.delete("/:id", auth, async (req, res) => {
+  console.log(req.params, "1sdsdsds")
+  await Post.deleteMany({ _id: req.params.id });//글의 ID
+  await Comment.deleteMany({ post: req.params.id });
+  console.log(req.params, "1dsdsdsd")
+  console.log(req.user.id, "1dsdsdsd")
+  await User.findByIdAndUpdate(req.user.id, {//글쓴이의 ID
+    $pull: {
+      posts: req.params.id,
+      comments: { post_id: req.params.id },
+    },
+  });
+  const CategoryUpdateResult = await Category.findOneAndUpdate(
+    { posts: req.params.id },
+    { $pull: { posts: req.params.id } },
+    { new: true }//이것을 적용해야 업데이트가 적용된다.
+  );
+
+  if (CategoryUpdateResult.posts.length === 0) {
+    await Category.deleteMany({ _id: CategoryUpdateResult });
+  }
+  return res.json({ success: true });
+});
+
+
+
+
+// @route    GET api/post/:id/edit
+// @desc     Edit Post
+// @access   Private
+router.get("/:id/edit", auth, async (req, res, next) => {
+  try {
+    const post = await Post.findById(req.params.id).populate("creator", "name");
+    res.json(post);
+  } catch (e) {
+    console.error(e);
+  }
+});
+
+router.post("/:id/edit", auth, async (req, res, next) => {
+  console.log(req, "api/post/:id/edit");
+  const {
+    body: { title, contents, fileUrl, id },
+  } = req;
+
+  try {
+    const modified_post = await Post.findByIdAndUpdate(
+      id,
+      {
+        title,
+        contents,
+        fileUrl,
+        date: moment().format("YYYY-MM-DD hh:mm:ss"),
+      },
+      { new: true }
+    );
+    console.log(modified_post, "edit modified");
+    res.redirect(`/api/post/${modified_post.id}`);
   } catch (e) {
     console.log(e);
     next(e);

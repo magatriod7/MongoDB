@@ -15,7 +15,7 @@ const router = express.Router();
 // @access   Public
 router.post("/", (req, res) => {
   const { email, password } = req.body;
-  console.log("auth")
+  //console.log("auth")
   // Simple Validation
   if (!email || !password) {
     return res.status(400).json({ msg: "모든 필드를 채워주세요" });

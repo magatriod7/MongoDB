@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
 // @access     public
 
 router.post("/", (req, res) => {
-  console.log(req);
+  //console.log(req);
   const { name, email, password } = req.body;
 
   // Simple validation

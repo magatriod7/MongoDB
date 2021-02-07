@@ -22,7 +22,7 @@ const Comments = ({ id, userName, userId }) => {
             userName,
         };
 
-        console.log(body);
+        console.log(body, "코맨트 부분 바디");
         dispatch({
             type: COMMENT_UPLOADING_REQUEST,
             payload: body,

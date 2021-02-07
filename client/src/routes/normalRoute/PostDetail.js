@@ -27,9 +27,6 @@ const PostDetail = (req) => {
     const { postDetail, creatorId, title, loading } = useSelector(
         (state) => state.post
     );
-    const testing = useSelector(
-        (state) => state
-    );
     //console.log(testing, "테스트중입니다.")
     const { userId, userName } = useSelector((state) => state.auth);
     const { comments } = useSelector((state) => state.comment);
@@ -182,7 +179,7 @@ const PostDetail = (req) => {
         </>
     );
 
-    console.log(comments, "Comments");
+    //    console.log(comments, "Comments");
     return (
         <div>
             <Helmet title={`Post | ${title}`} />

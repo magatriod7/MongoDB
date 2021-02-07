@@ -20,7 +20,7 @@ const AppNavbar = () => {
   const { isAuthenticated, user, userRole } = useSelector(//store에서 state를 가져온다. 즉, authenticated, user, userRole를 받아온다.
     (state) => state.auth//state.auth 받아 옴 
   );
-  console.log(userRole, "UserRole");
+  //console.log(userRole, "UserRole");
 
   const dispatch = useDispatch();//액션을 파라미터로 전달한다.
 

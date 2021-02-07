@@ -14,7 +14,7 @@ import { push } from "connected-react-router";
 
 const loadCommentsAPI = (payload) => {
     console.log(payload, "loadCommentAPI ID");
-    return axios.post(`/api/post/${payload.id}/comments`, payload);
+    return axios.get(`/api/post/${payload}/comments`);
 };
 
 function* loadComments(action) {
@@ -44,7 +44,7 @@ function* watchLoadComments() {
 
 const uploadCommentsAPI = (payload) => {
     console.log(payload.id, "loadCommentAPI ID");
-    return axios.post(`/api/post/${payload.id}/comments`);
+    return axios.post(`/api/post/${payload.id}/comments`, payload);
 };
 
 function* uploadComments(action) {
