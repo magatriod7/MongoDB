@@ -1,5 +1,7 @@
 /** @format */
-
+#root {
+  background-color: #F6F6F6;
+}
 #main-footer {
   background: #343a40;
   color: #fff;
@@ -8,8 +10,9 @@
 #page-header {
   height: 200px;
   background: url("../assets/img/image.jpg");
-  background-position: 54% 95%;
-  background-attachment: fixed;
+  background-position: 54% 35%;
+  background-size: 100%;
+  
   color: #fff;
   border-bottom: 1px #eee solid;
   padding-top: 60px;
@@ -59,4 +62,278 @@ textarea {
   &:last-child {
     margin-bottom: 0.25rem;
   }
+}
+
+
+
+// .last_span{	
+//   float:left;
+// 	padding:4px;
+// 	margin-right:3px;
+// 	width:50px;
+// 	color:#000;
+// 	font:bold 12px tahoma;
+// 	border:1px solid white;
+// 	text-align:center;
+//   text-decoration:none;
+  
+// }
+
+// .page ul {
+// 	list-style:none;
+// 	float:left;
+// 	display:inline;
+// }
+// .page ul li {
+// 	float:left;
+// }
+// .page ul li .numberList {
+// 	float:left;
+// 	padding:4px;
+// 	margin-right:3px;
+// 	width:24px;
+// 	color:#000;
+// 	font:bold 12px tahoma;
+// 	border:1px solid black ;
+// 	text-align:center;
+// 	text-decoration:none;
+// }
+// .page ul li span:hover, ul li span:focus {
+// 	color:#fff;
+// 	border:1px solid #f40;
+// 	background-color:#f40;
+// }
+
+// .border_test {
+//   border : 4px black solid;
+// }
+
+
+
+
+
+
+
+
+
+
+
+.maze_page{
+  text-align: center;  // div 사이즈 영역 안에서의 center
+  width: 100%;}
+
+.maze_pagination {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin-top: 20px;}
+
+.maze_pagination li {
+  display: inline;
+  text-align: center;}
+
+// 숫자들에 대한 스타일 지정
+.maze_pagination span {
+  float: left;
+  display: block;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 5px 12px;
+  color: #96a0ad;
+  line-height: 1.5;}
+
+.maze_first{
+  margin-right: 15px;}
+
+.maze_last{
+  margin-left: 15px;}
+
+.maze_first:hover, .last:hover, .left:hover, .right:hover{
+  color: #2e9cdf;}
+
+.maze_pagination span.active {
+  cursor: default;
+  color: #ffffff;}
+
+.maze_pagination span:active {
+  outline: none;}
+
+.maze_modal .maze_num {
+  margin-left: 3px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;}
+
+.maze_modal .maze_num:hover {
+  background-color: #2e9cdf;
+  color: #ffffff;}
+
+  .maze_pagination .maze_num_current {
+  background-color: tomato;
+  color: #ffffff;
+}
+
+.maze_modal .maze_num.active, .maze_modal .maze_num:active {
+  background-color: #2e9cdf;
+  cursor: pointer;}
+
+
+  .maze_modal .maze_list_etc { 
+  font-size: 18px; 
+  color: #626262;
+  padding-top: 0px;
+} 
+.maze_modal .maze_last { 
+  font-size: 18px; 
+  color: #626262;
+  padding-top: 3px;
+} 
+
+
+
+.table_name{
+  width:45%;
+  text-overflow : ellipsis;
+  height:50px;
+}
+.ellipse_list_name{
+  width:300px;
+  text-overflow : ellipsis;
+  white-space : nowrap;
+  overflow:hidden;
+  height:50px;
+}
+.table_date{
+  width:25%;
+
+}
+.table_creator{
+  width:20%;
+
+}
+.table_view{
+  width:10%;
+
+}
+
+.table tr {
+  height: 50px;
+}
+
+
+
+
+.top_menu_nav {
+  margin-left : 30px;
+  float:left
+}
+.top_menu_nav ul {
+position : relative;
+margin : 0;
+padding : 0;
+list-style : none;
+color : white;
+}
+.top_menu_nav ul::after {
+display : block;
+clear : both;
+content : ”;
+}
+.top_menu_nav> ul> li {
+position : relative;
+float : left;
+//border : 2px solid #fff;
+}
+.top_menu_nav ul li:not(:first-child) {
+border-left : none;
+}
+
+.top_menu_nav ul li:hover {
+background-color : rgba(255,255,255, 0.3);
+}
+.top_menu_nav ul li .top_menu_link {
+display : inline-block;
+padding : 10px 2em;
+color : #fff;
+line-height : 1;
+text-align : center;
+text-decoration : none;
+white-space : nowrap;
+}
+.top_menu_nav ul ul {
+position : absolute;
+top : 100%;
+background-color: rgba(0,0,0, 0.5);
+//left : -2px;
+}
+.top_menu_nav ul ul li {
+float : none;
+margin : 0;
+}
+
+.top_menu_nav ul ul li:not(:first-child) {
+//border : 2px solid #fff;
+border-top : none;
+}
+.top_menu_nav ul ul ul {
+position : absolute;
+top : 0px;
+left : 100%;
+}
+
+.top_menu_nav ul ul {
+  visibility : hidden;
+  opacity : 0;
+  transition : .2s ease-in-out;
+  transform : translateY (10px);
+  }
+  .top_menu_nav ul ul ul {
+  transform : translateX (-20px) translateY (0);
+  }
+  .top_menu_nav ul li:hover> ul {
+  visibility : visible;
+  opacity : 1;
+  transform : translateY (0);
+  }
+  .top_menu_nav ul ul li:hover> ul {
+  transform : translateX (0) translateY (0);
+  }
+  
+  .Main_list_1{
+    float: left;
+    width:45%;
+  }
+
+  
+  .Main_list_2{
+    float:right;
+    width:45%;
+  }
+
+  
+  
+.table_s tr {
+  border : black 1px solid;
+}
+.table_name_s{
+  width:300px;
+  text-overflow : ellipsis;
+  white-space : nowrap;
+  overflow:hidden;
+  height:50px;
+}
+.ellipse_list_name_s{
+  width:300px;
+  text-overflow : ellipsis;
+  white-space : nowrap;
+  overflow:hidden;
+  height:50px;
+}
+.table_date_s{
+  width:25%;
+
 }

@@ -19,6 +19,7 @@ import {
   PASSWORD_EDIT_UPLOADING_FAILURE,
 } from "../types";
 
+
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,

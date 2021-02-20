@@ -10,7 +10,7 @@ import Category from "../../components/post/Category";
 const PostCardList = () => {
   const { posts, categoryFindResult, loading, postCount } = useSelector(
     (state) => state.post
-  );
+  );//값들을 다
   const dispatch = useDispatch();
 
   useEffect(() => {

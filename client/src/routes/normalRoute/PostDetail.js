@@ -54,7 +54,7 @@ const PostDetail = (req) => {
         });
     };
 
-    //console.log(postDetail, "포스트 디테일 확인하는 부분");
+    console.log(postDetail, "포스트 디테일 확인하는 부분");
     const EditButton = (
         <Fragment>
             <Row className="d-flex justify-content-center pb-3">

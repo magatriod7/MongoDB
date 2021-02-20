@@ -52,14 +52,21 @@ router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {//
 
 // api/post
 router.get("/", async (req, res) => {
-  const postFindResult = await Post.find();
+  const postFindResult = await Post.find()
+    .populate({ path: "creator", select: "name" })//populate는 연결된 것들을  만들어주라고 요청하는 것
+    .populate({ path: "category", select: "categoryName" });
+
   const categoryFindResult = await Category.find();
   const result = { postFindResult, categoryFindResult };
 
   res.json(result);
-  //console.log(postFindResult, "All Post Get");
+  console.log(postFindResult, "All Post Get");
   //res.json(postFindResult);
 });
+
+//const post = await Post.findById(req.params.id)
+//.populate({ path: "creator", select: "name" })//populate는 연결된 것들을  만들어주라고 요청하는 것
+//.populate({ path: "category", select: "categoryName" });
 
 // @route POST api/post
 // @desc Create a Post
@@ -67,12 +74,13 @@ router.get("/", async (req, res) => {
 
 router.post("/", auth, uploadS3.none(), async (req, res, next) => {
   try {
-    console.log(req, "req 포스팅부분 확인까지 왔습니다 흑흑");
+    //console.log(req, "req 포스팅부분 확인까지 왔습니다 흑흑");
     const { title, contents, fileUrl, creator, category } = req.body;
     const newPost = await Post.create({
       title,
       contents,
       fileUrl,
+      creatorName: req.body.creatorName,
       creator: req.user.id,
       data: moment().format("YYYY-MM-DD hh:mm:ss"),
     });
@@ -81,9 +89,13 @@ router.post("/", auth, uploadS3.none(), async (req, res, next) => {
       categoryName: category,
     });
 
-    console.log(findResult, "Find Result!!!!");
+    console.log(req.body, "리퀘바디")
+    console.log(req.user, "리퀘유저")
+    console.log(req.data, "데이터")
+    console.log()
+    //console.log(findResult, "Find Result!!!!");
 
-    if (findResult === undefined || findResult === null) {
+    if (findResult === undefined || findResult === null) {//카테고리가 없을 경우
       const newCategory = await Category.create({
         categoryName: category,
       });

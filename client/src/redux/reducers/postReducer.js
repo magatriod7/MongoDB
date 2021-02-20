@@ -72,6 +72,7 @@ export default function (state = initialState, action) {
     case POSTS_WRITE_SUCCESS:
       return {
         ...state,
+        posts: action.payload,
         loading: false,
       };
     case POSTS_WRITE_FAILURE:

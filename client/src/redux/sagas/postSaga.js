@@ -38,6 +38,7 @@ const loadPostAPI = () => {
 function* loadPosts() {
   try {
     const result = yield call(loadPostAPI);
+    result.data.postFindResult = result.data.postFindResult.reverse()
     console.log(result, "loadedPosts");
     console.log("POSTS_LOADING_SUCCESS");
     yield put({
@@ -81,7 +82,7 @@ const uploadPostAPI = (payload) => {
     config.headers["x-auth-token"] = token;
     console.log(config.headers["x-auth-token"], "postsaga API configheader check")
   }
-  //console.log(payload, "업로드포스트에이피아이 패이로드");
+  console.log(payload, "업로드포스트에이피아이 패이로드");
   return axios.post("/api/post", payload, config);//payload-> post내용, config -> 토큰
 };
 
