@@ -1,32 +1,57 @@
 /** @format */
 #root {
   background-color: #F6F6F6;
+
 }
 #main-footer {
   background: #343a40;
   color: #fff;
 }
+.body {
+  display:flex;
+  flex-wrap:wrap;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  flex-direction: column;
+
+}
 
 #page-header {
-  height: 200px;
+  height: 100px;
   background: url("../assets/img/image.jpg");
   background-position: 54% 35%;
   background-size: 100%;
   
-  color: #fff;
+  color: white;
   border-bottom: 1px #eee solid;
-  padding-top: 60px;
+  padding-top: 10px;
+  margin-bottom: 20px;
 }
 
 #main-body {
   min-height: 90vh;
 }
 
+.Menu_list_top {
+  display:flex;
+  flex-direction:column;
+  
+}
+
+.menu_list {
+  display:flex;
+  flex-direction:column;
+}
+
+
 .card-img-top {
   width: 100%;
   height: 20rem;
   object-fit: cover;
 }
+
+
 
 // CkEditor5 Setting
 .ck {
@@ -63,51 +88,6 @@ textarea {
     margin-bottom: 0.25rem;
   }
 }
-
-
-
-// .last_span{	
-//   float:left;
-// 	padding:4px;
-// 	margin-right:3px;
-// 	width:50px;
-// 	color:#000;
-// 	font:bold 12px tahoma;
-// 	border:1px solid white;
-// 	text-align:center;
-//   text-decoration:none;
-  
-// }
-
-// .page ul {
-// 	list-style:none;
-// 	float:left;
-// 	display:inline;
-// }
-// .page ul li {
-// 	float:left;
-// }
-// .page ul li .numberList {
-// 	float:left;
-// 	padding:4px;
-// 	margin-right:3px;
-// 	width:24px;
-// 	color:#000;
-// 	font:bold 12px tahoma;
-// 	border:1px solid black ;
-// 	text-align:center;
-// 	text-decoration:none;
-// }
-// .page ul li span:hover, ul li span:focus {
-// 	color:#fff;
-// 	border:1px solid #f40;
-// 	background-color:#f40;
-// }
-
-// .border_test {
-//   border : 4px black solid;
-// }
-
 
 
 
@@ -195,40 +175,12 @@ textarea {
 
 
 
-.table_name{
-  width:45%;
-  text-overflow : ellipsis;
-  height:50px;
-}
-.ellipse_list_name{
-  width:300px;
-  text-overflow : ellipsis;
-  white-space : nowrap;
-  overflow:hidden;
-  height:50px;
-}
-.table_date{
-  width:25%;
-
-}
-.table_creator{
-  width:20%;
-
-}
-.table_view{
-  width:10%;
-
-}
-
-.table tr {
-  height: 50px;
-}
 
 
 
 
 .top_menu_nav {
-  margin-left : 30px;
+  // margin-left : 30px;
   float:left
 }
 .top_menu_nav ul {
@@ -253,9 +205,10 @@ border-left : none;
 }
 
 .top_menu_nav ul li:hover {
-background-color : rgba(255,255,255, 0.3);
+// background-color : rgba(255,255,255, 0.3);
 }
 .top_menu_nav ul li .top_menu_link {
+  
 display : inline-block;
 padding : 10px 2em;
 color : #fff;
@@ -265,44 +218,16 @@ text-decoration : none;
 white-space : nowrap;
 }
 .top_menu_nav ul ul {
-position : absolute;
+// position : absolute;
 top : 100%;
-background-color: rgba(0,0,0, 0.5);
-//left : -2px;
-}
-.top_menu_nav ul ul li {
-float : none;
-margin : 0;
+// background-color: rgba(0,0,0, 0.5);
+// left : -2px;
+
+background-color : rgba(255,255,255, 0.3);
 }
 
-.top_menu_nav ul ul li:not(:first-child) {
-//border : 2px solid #fff;
-border-top : none;
-}
-.top_menu_nav ul ul ul {
-position : absolute;
-top : 0px;
-left : 100%;
-}
 
-.top_menu_nav ul ul {
-  visibility : hidden;
-  opacity : 0;
-  transition : .2s ease-in-out;
-  transform : translateY (10px);
-  }
-  .top_menu_nav ul ul ul {
-  transform : translateX (-20px) translateY (0);
-  }
-  .top_menu_nav ul li:hover> ul {
-  visibility : visible;
-  opacity : 1;
-  transform : translateY (0);
-  }
-  .top_menu_nav ul ul li:hover> ul {
-  transform : translateX (0) translateY (0);
-  }
-  
+
   .Main_list_1{
     float: left;
     width:45%;
@@ -314,26 +239,25 @@ left : 100%;
     width:45%;
   }
 
-  
-  
-.table_s tr {
-  border : black 1px solid;
-}
-.table_name_s{
-  width:300px;
-  text-overflow : ellipsis;
-  white-space : nowrap;
-  overflow:hidden;
-  height:50px;
-}
-.ellipse_list_name_s{
-  width:300px;
-  text-overflow : ellipsis;
-  white-space : nowrap;
-  overflow:hidden;
-  height:50px;
-}
-.table_date_s{
-  width:25%;
+  .List_table {
+    padding : 5px;
+    border : black 1px solid;
 
-}
+  }
+  .List_Top_Info{
+    flex-direction: row;
+    display: flex;
+    border : red 1px solid;
+  }
+  .List_Bottom_Info{
+    border : blue 1px solid;
+    
+  }
+  .List_ul{
+    
+    margin:0;
+  }
+  .List_ul li{ 
+    float:left;
+    list-style-type: none;
+  }

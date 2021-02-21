@@ -22,41 +22,43 @@ import Main from "./normalRoute/Main"
 
 const MyRouter = () => (
   <Fragment>
-    <AppNavbar />
-    <Header />
-    <Container id="main-body">
-      <Switch>
-        <Route path="/" exact component={Main} />
-        <Route path="/post" exact component={PostWrite} />
-        <Route path="/post/:id" exact component={PostDetail} />
-        <Route path="/test" exact component={PostCardList} />
-        <EditProtectedRoute path="/post/:id/edit" exact component={PostEdit} />
-        {/* 
+    <div className="body">
+      <AppNavbar />
+      <Header />
+      <Container id="main-body">
+        <Switch>
+          <Route path="/" exact component={Main} />
+          <Route path="/post" exact component={PostWrite} />
+          <Route path="/post/:id" exact component={PostDetail} />
+          <Route path="/test" exact component={PostCardList} />
+          <EditProtectedRoute path="/post/:id/edit" exact component={PostEdit} />
+          {/* 
         <Route
           path="/post/list/:categoryName"
           exact
           component={CategoryResult}
         /> */}
 
-        <Route
-          path="/post/list/:categoryName"
-          exact
-          component={List}
-        />
-        <Route path="/search/:searchTerm" exact component={Search} />
+          <Route
+            path="/post/list/:categoryName"
+            exact
+            component={List}
+          />
+          <Route path="/search/:searchTerm" exact component={Search} />
 
-        <Route path="/post/list/:categoryName/post" exact component={ListWrite} />
+          <Route path="/post/list/:categoryName/post" exact component={ListWrite} />
 
-        <Route path="/test2" exact component={List} />
-        <ProfileProtectedRoute
-          path="/user/:userName/profile"
-          exact
-          component={Profile}
-        />
-        <Redirect from="*" to="/" />
-      </Switch>
-    </Container>
-    <Footer />
+          <Route path="/test2" exact component={List} />
+          <ProfileProtectedRoute
+            path="/user/:userName/profile"
+            exact
+            component={Profile}
+          />
+          <Redirect from="*" to="/" />
+        </Switch>
+      </Container>
+      <Footer />
+    </div>
   </Fragment>
 );
 
