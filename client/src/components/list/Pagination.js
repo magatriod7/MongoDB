@@ -34,7 +34,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
             <ul className="maze_pagination maze_modal">
                 <li>
                     <span className="maze_first maze_last" onClick={() => paginate(1)}>
-                        처음페이지
+                        &lt;&lt;
                     </span>
                 </li>
                 <li>
@@ -65,7 +65,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
 
                 <li >
                     <span className="maze_last maze_last" onClick={() => paginate(totalList)}>
-                        끝페이지
+                        &gt;&gt;
                     </span>
                 </li>
             </ul>

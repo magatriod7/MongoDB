@@ -15,13 +15,17 @@ import { LOGOUT_REQUEST, POSTS_WRITE_REQUEST } from "../redux/types";
 import LoginModal from "../components/auth/LoginModal";
 import RegisterModal from "../components/auth/RegisterModal";
 import MenuList from "./MenuList";
+import MenuListWindow from "./MenuListWindow";
 import SearchInput from "./search/searchInput";
+
+
 
 const AppNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);//초기값 부여 및 setIsOpen의 값이 변하면 isOpen의 값이 변한다
   const { isAuthenticated, user, userRole } = useSelector(//store에서 state를 가져온다. 즉, authenticated, user, userRole를 받아온다.
     (state) => state.auth//state.auth 받아 옴 
   );
+  const [isWindowWidth, setWindowWidth] = useState(2);
   //console.log(userRole, "UserRole");
 
   const dispatch = useDispatch();//액션을 파라미터로 전달한다.
@@ -32,11 +36,19 @@ const AppNavbar = () => {
     });
   }, [dispatch]);
 
+  const handleResize = () => {
+    console.log(window.innerWidth)
+    if (window.innerWidth > 992) { setWindowWidth(1) }
+    else { setWindowWidth(0) }
+  }
 
 
   useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    console.log(isWindowWidth, "왜이러는거야 흑흑");
     setIsOpen(false);
-  }, [user]);//유저가 변할 때 isopen이 꺼진다.
+  }, [isWindowWidth]);//유저가 변할 때 isopen이 꺼진다.
 
 
 
@@ -109,8 +121,7 @@ const AppNavbar = () => {
   );
 
 
-
-
+  console.log(window.innerWidth);
 
 
 
@@ -127,11 +138,11 @@ const AppNavbar = () => {
               <div className="Menu_list_top">
                 {/* <SearchInput isOpen={isOpen} /> */}
                 <nav className="top_menu_nav">
-                  <MenuList />
+                  {isWindowWidth ? < MenuListWindow /> : < MenuList />}
                 </nav>
 
 
-                <Nav className="" navbar>
+                <Nav className="top_menu_nav" navbar>
                   {isAuthenticated ? authLink : guestLink}
                 </Nav>
               </div>

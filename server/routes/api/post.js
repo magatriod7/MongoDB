@@ -178,13 +178,30 @@ router.get("/:id/comments", async (req, res) => {
 
 router.post("/:id/comments", async (req, res, next) => {
   //console.log(req.body, "dddddddddsadasdasjfkjsahvklsdjvlasㄴㅁ야ㅓㅁ나롬날");
-  const newComment = await Comment.create({
-    contents: req.body.contents,
-    creator: req.body.userId,
-    creatorName: req.body.userName,
-    post: req.body.id,
-    date: moment().format("YYYY-MM-DD hh:mm:ss"),
-  });
+
+  var newComment;
+
+  console.log(req.body.userId)
+  if (req.body.userId != null) {
+    newComment = await Comment.create({
+      contents: req.body.contents,
+      creator: req.body.userId,
+      creatorName: req.body.userName,
+      post: req.body.id,
+      date: moment().format("YYYY-MM-DD hh:mm:ss"),
+    });
+    console.log("테스트중1")
+  }
+  else {
+    newComment = await Comment.create({
+      contents: req.body.contents,
+      creator: "60333686f69c0850e09eaa08",
+      creatorName: "비회원",
+      post: req.body.id,
+      date: moment().format("YYYY-MM-DD hh:mm:ss"),
+    });
+    console.log("테스트중2");
+  }
   console.log(newComment, "newComment");
 
   try {

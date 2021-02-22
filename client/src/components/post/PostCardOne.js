@@ -16,36 +16,36 @@ const PostCardOne = ({ posts }) => {
   return (
     <Fragment>
       {Array.isArray(posts)
-      // Array.isArray(posts)가 배열인지 아닌지 확인함
+        // Array.isArray(posts)가 배열인지 아닌지 확인함
         ? posts.map(({ _id, title, fileUrl, comments, views }) => {
-            return (
-              <div key={_id} className="col-md-4">
-                <Link
-                  to={`/post/${_id}`}
-                  className="text-dark text-decoration-none"
-                >
-                  <Card className="mb-3">
-                    <CardImg top alt="img" src={fileUrl} />
-                    <CardBody>
-                      <CardTitle className="text-truncate d-flex justify-content-between">
-                        <span className="text-truncate">{title} </span>
-                        <span>
-                          <FontAwesomeIcon icon={faMouse} />
+          return (
+            <div key={_id} className="col-md-4">
+              <Link
+                to={`/post/${_id}`}
+                className="text-dark text-decoration-none"
+              >
+                <Card className="mb-3">
+                  <CardImg top alt="img" src={fileUrl} />
+                  <CardBody>
+                    <CardTitle className="text-truncate d-flex justify-content-between">
+                      <span className="text-truncate">{title} </span>
+                      <span>
+                        <FontAwesomeIcon icon={faMouse} />
                           &nbsp;&nbsp;
                           <span>{views}</span>
-                        </span>
-                      </CardTitle>
-                      <Row>
-                        <Button color="primary" className="p-2 btn-block">
-                          More <Badge color="light">{comments.length}</Badge>
-                        </Button>
-                      </Row>
-                    </CardBody>
-                  </Card>
-                </Link>
-              </div>
-            );
-          })
+                      </span>
+                    </CardTitle>
+                    <Row>
+                      <Button color="primary" className="p-2 btn-block">
+                        More <Badge color="light">{comments.length}</Badge>
+                      </Button>
+                    </Row>
+                  </CardBody>
+                </Card>
+              </Link>
+            </div>
+          );
+        })
         : ""}
     </Fragment>
   );

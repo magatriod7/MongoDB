@@ -33,6 +33,11 @@
   min-height: 90vh;
 }
 
+.Main_Logo {
+  // border: 1px solid white;
+  // flex : 1;
+}
+
 .Menu_list_top {
   display:flex;
   flex-direction:column;
@@ -124,9 +129,7 @@ textarea {
 }
 
 .maze_first{
-  margin-right: 15px;
-  padding-bottom:20px;
-}
+  margin-right: 15px;}
 
 .maze_last{
   margin-left: 15px;}
@@ -173,21 +176,31 @@ textarea {
 .maze_modal .maze_last { 
   font-size: 18px; 
   color: #626262;
-  padding-top: 0;
+  padding-top: 3px;
 } 
 
+.top_menu_sizing {
+  display: flex;
+  min-width: 650px;
+  flex:3;
+  // border:white 1px solid;
+}
+.top_menu_sizing2 {
+  display: flex;
+  min-width: 250px;
+  float:right;
+  flex:1;
+  // border:white 1px solid;
+  
 
+}
 
-
-
-
-
-
-///////메뉴 시작
 
 .top_menu_nav {
   // margin-left : 30px;
-  float:left
+  // float:left;
+  height:56px;
+  align-items: center;
 }
 .top_menu_nav ul {
 position : relative;
@@ -195,7 +208,15 @@ margin : 0;
 padding : 0;
 list-style : none;
 color : white;
+// height:100%;
 }
+
+.top_menu_nav>ul {
+height:100%;
+  }
+  .top_menu_nav>ul>li{
+    min-width: 110px;
+  }
 .top_menu_nav ul::after {
 display : block;
 clear : both;
@@ -204,8 +225,12 @@ content : ”;
 .top_menu_nav> ul> li {
 position : relative;
 float : left;
+height:100%;
+
+padding-top: 10px;
 //border : 2px solid #fff;
 }
+
 .top_menu_nav ul li:not(:first-child) {
 border-left : none;
 }
@@ -235,9 +260,8 @@ background-color : rgba(255,255,255, 0.3);
 
 
 .plus_minus{
-  display: inline-flex;
+  display: flex;
   // background-color: gray;
-  float:right;
   width: 30px;
   height:30px;
   justify-content: center;
@@ -249,37 +273,12 @@ background-color : rgba(255,255,255, 0.3);
   font-weight: 600;
 }
 
-
-
-
-
-
-
-
-////////메뉴 끝
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // .plus_minus span{
 //   display: inline-block;
 //   background-color: hotpink;
 //   padding: 0;
 //   // line-height: 1;
 // }
-
-
-
 .inline_flex{
   display: inline-flex;
   justify-content: space-between;
@@ -287,23 +286,6 @@ background-color : rgba(255,255,255, 0.3);
   width:100%;
   // background-color: hotpink;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//리스트 시작
 
   .Main_list_1{
     float: left;
@@ -316,12 +298,6 @@ background-color : rgba(255,255,255, 0.3);
     width:45%;
   }
 
-  .ellipse_list_name_s{
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-
-  }
   
   .List_table {
     padding : 5px;
@@ -352,7 +328,7 @@ background-color : rgba(255,255,255, 0.3);
     flex: 2 auto;
     background-color: #aacfd0;
     height : 35px;
-    font-size: 18px;
+    font-size: 20px;
     padding-left: 20px;
     // padding : 5px;
     // border : tomato 1px solid;
@@ -380,7 +356,7 @@ background-color : rgba(255,255,255, 0.3);
       width:75%;
 			flex: 2 auto;
       // border : tomato 1px solid;
-      font-size: 20x;
+      font-size: 20px;
       padding-left: 20px;      
       overflow:hidden;
       text-overflow:ellipsis;
@@ -420,6 +396,94 @@ background-color : rgba(255,255,255, 0.3);
 
 
 
-  @media (min-width: 600px) {
+  @media (min-width: 992px) {
+.Menu_list_top{
+  display: flex;
+  flex-direction: row; 
+  width:100%
+}
+ 
+.top_menu_nav {
+  margin-left : 30px;
+  float:left
+}
+.top_menu_nav ul {
+position : relative;
+margin : 0;
+padding : 0;
+list-style : none;
+color : white;
+}
+.top_menu_nav ul::after {
+display : block;
+clear : both;
+content : ”;
+}
+.top_menu_nav> ul> li {
+position : relative;
+float : left;
+//border : 2px solid #fff;
+}
+.top_menu_nav ul li:not(:first-child) {
+border-left : none;
+}
+
+.top_menu_nav ul li:hover {
+background-color : rgba(255,255,255, 0.3);
+}
+.top_menu_nav ul li .top_menu_link {
+display : inline-block;
+padding : 10px 2em;
+color : #fff;
+line-height : 1;
+text-align : center;
+text-decoration : none;
+white-space : nowrap;
+}
+.top_menu_nav ul ul {
+position : absolute;
+top : 100%;
+background-color: rgba(0,0,0, 0.5);
+//left : -2px;
+}
+.top_menu_nav ul ul li {
+float : none;
+margin : 0;
+}
+
+.top_menu_nav ul ul li:not(:first-child) {
+//border : 2px solid #fff;
+border-top : none;
+}
+.top_menu_nav ul ul ul {
+position : absolute;
+top : 0px;
+left : 100%;
+}
+
+.top_menu_nav ul ul {
+  visibility : hidden;
+  opacity : 0;
+  transition : .2s ease-in-out;
+  transform : translateY (10px);
+  }
+  .top_menu_nav ul ul ul {
+  transform : translateX (-20px) translateY (0);
+  }
+  .top_menu_nav ul li:hover> ul {
+  visibility : visible;
+  opacity : 1;
+  transform : translateY (0);
+  }
+  .top_menu_nav ul ul li:hover> ul {
+  transform : translateX (0) translateY (0);
+  }
+  
+  .AppNavBar{
+    padding : 0;
+    // padding-top : 8px;
+    // padding-bottom : 8px;
     
+  }
+
   }

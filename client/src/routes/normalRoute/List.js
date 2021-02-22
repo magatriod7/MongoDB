@@ -89,7 +89,9 @@ const List = () => {
         return (
 
             <Fragment>
-                <h1>{categoryName}</h1>
+                <Button className="mb-3" color="info">
+                    {categoryName}
+                </Button>
 
                 <div className="border-black border-5">
                     <Helmet title="testing" />
@@ -97,7 +99,7 @@ const List = () => {
                     <Pagination postsPerPage={postsPerPage} totalPosts={listing.length} paginate={setCurrentPage} currentPage={currentPage}> </Pagination>
                 </div>
 
-                <Form className="col mt-2">
+                <Form className="col mt-2 mb-5">
                     <Link
                         to={`/post/list/${categoryName}/post`}
                         className="btn btn-success block text-white px-3"

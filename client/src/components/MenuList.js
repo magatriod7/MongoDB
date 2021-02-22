@@ -73,12 +73,27 @@ const MenuList = () => {
     };//isOpen의 값을 토글한다.
 
 
+    const Plus_tap = (
+        <Fragment>
+            <div className="plus_minus">
+                +
+            </div>
+        </Fragment>
+    );
+
+    const Minus_tap = (
+        <Fragment>
+            <div className="plus_minus" >-</div>
+        </Fragment>
+    );
+
     return (
         <Fragment>
             <ul className="menu_list">
                 <li> <Link to="/post/60208a813276140620c98e62" className="top_menu_link"> 소개 </Link> </ li>
 
-                <li onClick={handleToggleBoard}> <Link to="" className="top_menu_link"> 게시판 </Link>
+                <li onClick={handleToggleBoard}> <div className="top_menu_link"> 게시판
+                    {isOpenBoard ? Minus_tap : Plus_tap}</div>
                     <Collapse isOpen={isOpenBoard} >
                         <ul>
                             <li>  <Link to="/post/list/공지사항" className="top_menu_link"> 공지사항 </Link> </ li>
@@ -90,13 +105,13 @@ const MenuList = () => {
                     </Collapse>
                 </ li>
                 <li onClick={handleToggleCompetiton}>
-                    <Link to="" className="top_menu_link"> <div onClick={handleToggleCompetitonClose}>대회 및 전시회</div></Link>
+                    <div className="top_menu_link" onClick={handleToggleCompetitonClose}>대회 및 전시회{isOpenCompetiton ? Minus_tap : Plus_tap}</div>
 
                     <Collapse isOpen={isOpenCompetiton}>
                         <ul>
                             <li onClick={handleToggleCompetitonClose}>  <Link to="/post/list/MAZE전시회" className="top_menu_link"> MAZE 전시회 </Link> </ li>
                             <li onClick={handleToggleCompetiton_1}>
-                                <Link to="" className="top_menu_link"> 단국대 대회 수상자</Link>
+                                <div to="" className="top_menu_link"> 단국대 대회 수상자 {isOpenCompetiton_1 ? Minus_tap : Plus_tap}</div>
                                 <ul >
                                     <Collapse isOpen={isOpenCompetiton_1}>
                                         <li onClick={handleToggleCompetitonClose}>  <Link to="/post/list/스텝 트레이서" className="top_menu_link"> 스텝 트레이서 </Link> </ li>
@@ -106,7 +121,7 @@ const MenuList = () => {
                                 </ ul >
                             </ li >
                             <li onClick={handleToggleCompetiton_2}>
-                                <Link to="" className="top_menu_link"> sub nav </Link>
+                                <div to="" className="top_menu_link"> sub nav {isOpenCompetiton_2 ? Minus_tap : Plus_tap} </div>
                                 <ul >
                                     <Collapse isOpen={isOpenCompetiton_2}>
                                         <li onClick={handleToggleCompetitonClose}>  <Link to="" className="top_menu_link"> child </Link> </ li>
