@@ -20,14 +20,14 @@ const Listdetail = ({ posts }) => {
             </ul> */}
 
             <div className="List_table">
-                {/* <div className="List_Top_Info">
+                <div className="List_Top_Info">
                     <div className="List_div">
                         <div className="table_name_top">제목</div>
                         <div className="table_creator_top">글쓴이</div>
                         <div className="table_date_top">날짜</div>
                         <div className="table_view_top">조회수</div>
                     </div>
-                </div> */}
+                </div>
                 <div className="List_Bottom_Info">
                     {posts.map(posts =>
                         <div className="List_div" key={posts._id}>

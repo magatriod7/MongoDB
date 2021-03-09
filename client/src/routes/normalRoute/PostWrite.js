@@ -22,6 +22,8 @@ const PostWrite = () => {
     const { isAuthenticated, user } = useSelector((state) => state.auth);  ////store에서 state를 가져온다. 즉, authenticated, user, userRole를 받아온다.
     const [form, setValues] = useState({ title: "", contents: "", fileUrl: "", creatorName: user.name });// inputstate를 저장할 useState
     const dispatch = useDispatch();//reducer dispatch
+
+
     const onSubmit = async (e) => {
         await e.preventDefault();
         const { title, contents, fileUrl, category, creatorName } = form;

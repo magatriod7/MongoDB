@@ -129,6 +129,7 @@ function* loadPostDetail(action) {
     //console.log("loadPostDetail 잘 작동하는중")
     // console.log(action);
     const result = yield call(loadPostDetailAPI, action.payload);
+    console.log(result, "확인용 콘솔로그입니당!!!");
     //console.log(result, "post_detail_saga_data 여기서부터 왜 안나오는거같지");
     //console.log(result.data, "post_detail_saga_data 여기서부터 왜 안나오는거같지");
     //console.log(result.data._id, "여기서부터 왜 안나오는거같지");

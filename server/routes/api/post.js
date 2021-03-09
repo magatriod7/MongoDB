@@ -82,16 +82,13 @@ router.post("/", auth, uploadS3.none(), async (req, res, next) => {
       fileUrl,
       creatorName: req.body.creatorName,
       creator: req.user.id,
-      data: moment().format("YYYY-MM-DD hh:mm:ss"),
+      date: moment().format("YYYY-MM-DD HH:mm:ss"),
     });
-
+    console.log(moment().format("YYYY-MM-DD HH:mm:ss"), "모맨트 포먓 뭐가문제냐고!ㅁㄴ어ㅑㅁㄴ리ㅑㄴ머리ㅏㄴ머리남러ㅑㄴ미럼냐ㅣㅓㄹㄴ미ㅏ럼냐폄내ㅑ퍼매");
     const findResult = await Category.findOne({
       categoryName: category,
     });
 
-    console.log(req.body, "리퀘바디")
-    console.log(req.user, "리퀘유저")
-    console.log(req.data, "데이터")
     console.log()
     //console.log(findResult, "Find Result!!!!");
 
@@ -143,7 +140,7 @@ router.get("/:id", async (req, res, next) => {
       .populate({ path: "category", select: "categoryName" });
     post.views += 1;
     post.save();
-    //console.log(post, "router.get");
+    console.log(post, "router.get");
     res.json(post);
   } catch (e) {
     console.log("여기서 에러뜸");
@@ -188,7 +185,7 @@ router.post("/:id/comments", async (req, res, next) => {
       creator: req.body.userId,
       creatorName: req.body.userName,
       post: req.body.id,
-      date: moment().format("YYYY-MM-DD hh:mm:ss"),
+      date: moment().format("YYYY-MM-DD HH:mm:ss"),
     });
     console.log("테스트중1")
   }
@@ -198,7 +195,7 @@ router.post("/:id/comments", async (req, res, next) => {
       creator: "60333686f69c0850e09eaa08",
       creatorName: "비회원",
       post: req.body.id,
-      date: moment().format("YYYY-MM-DD hh:mm:ss"),
+      date: moment().format("YYYY-MM-DD HH:mm:ss"),
     });
     console.log("테스트중2");
   }
@@ -283,7 +280,7 @@ router.post("/:id/edit", auth, async (req, res, next) => {
         title,
         contents,
         fileUrl,
-        date: moment().format("YYYY-MM-DD hh:mm:ss"),
+        date: moment().format("YYYY-MM-DD HH:mm:ss"),
       },
       { new: true }
     );
@@ -313,7 +310,8 @@ router.get("/category/:categoryName", async (req, res, next) => {
         },
       },//posts부분에서 찾아라
       "posts"
-    ).populate({ path: "posts" });//posts 저장
+    ).populate({ path: "posts", options: { sort: { 'date': -1 } } });//posts 저장
+
     console.log(result, "Category Find result");
 
     res.send(result);

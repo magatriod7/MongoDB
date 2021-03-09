@@ -30,7 +30,7 @@ const SmallList = ({ category }) => {
     const { posts, categoryFindResult, loading, postCount } = useSelector(
         (state) => state.post
     );//값들을 다 받았음
-
+    console.log(categoryFindResult.posts, "카테고리 값 확인");
     let listing = categoryFindResult.posts//.reverse()
     if (listing === undefined) { listing = [0] }
     const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const SmallList = ({ category }) => {
 
 
     if (listing) {
-        //console.log(totalpage, "여기인가")
+        console.log(listing, "리스팅 확인중")
 
         listing = listing.reverse();
         return (
@@ -89,7 +89,10 @@ const SmallList = ({ category }) => {
             </Fragment>
         );
     }
-    else return (<div></div>)
+    else {
+        console.log(listing, "리스팅 확인중")
+        return (<div></div>)
+    }
 };
 
 export default SmallList;

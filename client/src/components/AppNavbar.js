@@ -66,28 +66,12 @@ const AppNavbar = () => {
 
   const authLink = (
     <Fragment>
-      <NavItem>
-        {/* {userRole === "MainJuin" ? (
-          <Form className="col mt-2">
-            <Link
-              to="/post"
-              className="btn btn-success block text-white px-3"
-              onClick={addPostClick}
-            >
-              Add Post
-            </Link>
-          </Form>
-        ) : (
-            ""
-          )} */}
-
-      </NavItem>
       <NavItem className="justify-content-center">
         <Form className="col mt-2">
           {user && user.name ? (
             <Link to={`/user/${user.name}/profile`}>
               <Button outline color="light" className="px-3" block>
-                <strong>{user ? `Welcome ${user.name}` : ""}</strong>
+                <strong>{user ? `${user.name}` : ""}</strong>
               </Button>
             </Link>
           ) : (
@@ -127,25 +111,36 @@ const AppNavbar = () => {
 
   return (
     <Fragment>
+
+      {userRole === "MainJuin" ? (
+        <Form className="col mt-2">
+          <Link
+            to="/post"
+            className="btn btn-success block text-white px-3"
+            onClick={addPostClick}
+          >
+            Add Post
+            </Link>
+        </Form>
+      ) : (
+          ""
+        )}
+
       <div className="AppNavBar">
         <Navbar color="dark" dark expand="lg" className="sticky-top">
-          <Container>
+          <Container className="">
             <Link to="/" className="text-white text-decoration-none">
-              MAZE_HOME_PAGE
-          </Link>
+              <h3>M</h3>
+            </Link>
             <NavbarToggler onClick={handleToggle} />
-            <Collapse isOpen={isOpen} navbar>
-              <div className="Menu_list_top">
-                {/* <SearchInput isOpen={isOpen} /> */}
-                <nav className="top_menu_nav">
-                  {isWindowWidth ? < MenuListWindow /> : < MenuList />}
-                </nav>
+            <Collapse className="" isOpen={isOpen} navbar>
+              {/* <SearchInput isOpen={isOpen} /> */}
+              {isWindowWidth ? < MenuListWindow /> : < MenuList />}
 
 
-                <Nav className="top_menu_nav" navbar>
-                  {isAuthenticated ? authLink : guestLink}
-                </Nav>
-              </div>
+              <Nav className="top_menu_nav testing" navbar>
+                {isAuthenticated ? authLink : guestLink}
+              </Nav>
             </Collapse >
           </Container >
         </Navbar >

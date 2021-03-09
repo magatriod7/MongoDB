@@ -17,26 +17,26 @@ const SmallListDetail = ({ posts }) => {
                 ))}
             </ul> */}
 
-            <table className="table_s">
-                <thead>
-                    <tr>
-                        <th className="table_name_s">제목</th>
-                        <th className="table_date_s">날짜</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="table_s">
+                <div>
+                    <div className="table_s_top">
+                        <div className="table_name_s">제목</div>
+                        <div className="table_date_s">날짜</div>
+                    </div>
+                </div>
+                <div className="table_s_body">
                     {posts.map(posts =>
-                        <tr key={posts._id}>
-                            <td className="table_name_s">
+                        <div className="table_s_body_list" key={posts._id}>
+                            <div className="table_name_s">
                                 <Link to={`/post/${posts._id}`} className="text-dark text-decoration-none">
                                     <div className="ellipse_list_name_s">{posts.title}</div>
                                 </Link>
-                            </td>
-                            <td className="table_date_s">{posts.date}</td>
-                        </tr>
+                            </div>
+                            <div className="table_date_s">{posts.date}</div>
+                        </div>
                     )}
-                </tbody>
-            </table>
+                </div>
+            </div>
 
         </div>
     );

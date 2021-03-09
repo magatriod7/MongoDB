@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import Listdetail from "../../components/list/Listdetail"
 import { Link } from "react-router-dom";
 import Pagination from "../../components/list/Pagination"
+import SmallListDetail from "../../components/list/SmallListDetail"
 import {
     Navbar,
     Container,
@@ -21,24 +22,15 @@ import {
 
 
 
-const List = () => {
-
-
-    const addPostClick = () => {
-        console.log("POSTS_WRITE_REQUEST")
-        dispatch({
-            type: POSTS_WRITE_REQUEST,
-            payload: categoryName
-        });
-    };
-
-    let { categoryName } = useParams();
+const SmallList_2 = () => {
+    //console.log(category, "카테고리 확인중입니당.")
+    let categoryName = ["자유게시판"];
     const [currentPage, setCurrentPage] = useState(1)
     const [postsPerPage, setPostsPerPage] = useState(5)
     const { posts, categoryFindResult, loading, postCount } = useSelector(
         (state) => state.post
     );//값들을 다 받았음
-
+    console.log(categoryFindResult.posts, "카테고리 값 확인");
     let listing = categoryFindResult.posts//.reverse()
     if (listing === undefined) { listing = [0] }
     const dispatch = useDispatch();
@@ -68,10 +60,10 @@ const List = () => {
 
     console.log(categoryFindResult);
     console.log(categoryName);
-    console.log(categoryFindResult.posts, "포스트")
-    console.log(posts, "포스트")
-    console.log(listing, "listing")
-    console.log(currentPage)
+    // console.log(categoryFindResult.posts, "포스트")
+    // console.log(posts, "포스트")
+    // console.log(listing, "listing")
+    // console.log(currentPage)
 
 
     useEffect(() => {
@@ -79,39 +71,28 @@ const List = () => {
             type: CATEGORY_FIND_REQUEST,
             payload: categoryName,
         });
-    }, [dispatch, categoryName]);
+    }, []);
 
 
     if (listing) {
-        console.log(totalpage, "여기인가")
+        console.log(listing, "리스팅 확인중")
 
-        // listing = listing.reverse();
+        listing = listing.reverse();
         return (
 
             <Fragment>
-                <Button className="mb-3" color="info">
-                    {categoryName}
-                </Button>
-
+                <div>{categoryName}</div>
                 <div className="border-black border-5">
                     <Helmet title="testing" />
-                    <Listdetail posts={currentPosts(listing)}> </Listdetail>
-                    <Pagination postsPerPage={postsPerPage} totalPosts={listing.length} paginate={setCurrentPage} currentPage={currentPage}> </Pagination>
+                    <SmallListDetail posts={currentPosts(listing)}> </SmallListDetail>
                 </div>
-
-                <Form className="col mt-2 mb-5">
-                    <Link
-                        to={`/post/list/${categoryName}/post`}
-                        className="btn btn-success block text-white px-3"
-                        onClick={addPostClick}
-                    >
-                        Add Post
-            </Link>
-                </Form>
             </Fragment>
         );
     }
-    else return (<div></div>)
+    else {
+        console.log(listing, "리스팅 확인중")
+        return (<div></div>)
+    }
 };
 
-export default List;
+export default SmallList_2;
