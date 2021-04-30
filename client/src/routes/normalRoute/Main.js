@@ -9,18 +9,13 @@ const Main = () => {
 
 
     useEffect(() => {
-        console.log("메인문 유즈 이펙트ㅋ")
+        // console.log("메인문 유즈 이펙트ㅋ")
     }, []);
 
 
     return (
         <Fragment>
-
-            <div className="main-container">
-                <div className="main-item"><SmallList category="공지사항"></SmallList></div>
-                <div className="main-item"><SmallList category="자유게시판"></SmallList></div>
-                <div className="main-item"><SmallList category="게시판"></SmallList></div>
-                <div className="main-item"><SmallList category="게시판"></SmallList></div>
+            <div className="Main_Photo_body">
 
             </div>
         </Fragment>

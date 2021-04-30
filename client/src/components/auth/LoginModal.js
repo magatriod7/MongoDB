@@ -62,7 +62,7 @@ const LoginModal = () => {
     console.log('dispatch');
   };
   return (
-    <div>
+    <div className="loginModal" >
       <NavLink onClick={handleToggle} href="#">
         Login
       </NavLink>

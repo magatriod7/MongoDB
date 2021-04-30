@@ -1,6 +1,8 @@
 /** @format */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap');
-
+@import '../../node_modules/codyhouse-framework/main/assets/css/base';
+@import './style.scss';
+// @import 'costom-style';
 
 #root {
   background-color: #F6F6F6;
@@ -15,8 +17,11 @@
   flex-wrap:wrap;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  // overflow: hidden;
   flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 
 }
 
@@ -34,6 +39,11 @@
 
 #main-body {
   min-height: 90vh;
+  margin-top : 80px;
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  // background-color: greenyellow;
 }
 
 
@@ -183,6 +193,11 @@ textarea {
 
 ///////메뉴 시작
 
+.Nav_bar_position{
+  position: absolute;
+  top:0px
+}
+
 @media (min-width: 600px) {
   .testing {margin-left: 30px;}
 }
@@ -256,6 +271,31 @@ background-color : rgba(255,255,255, 0.3);
   font-weight: 600;
 }
 
+.Collapse_bar {
+  justify-content: space-between;
+}
+.nav_body {
+  
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  max-width: 2000px;
+
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+@media (min-width: 992px){
+   .nav_main_link {
+     margin-left: 10px;
+   }
+}
 
 
 ///////지금 이거 짜는중이야
@@ -270,7 +310,7 @@ background-color : rgba(255,255,255, 0.3);
   height:56px;
 }
 .top_menu_nav_Window {
-  margin-left : 30px;
+  margin-left : 80px;
   float:left;
   background-color: #343a40;
   align-items: center;
@@ -693,4 +733,72 @@ background-color:#6a6f74;
 .table_date_s{
   flex:1 auto;
   width:40%;  
+}
+
+
+
+
+
+
+
+///////////////////////// 메인 바디
+
+.Main_Photo_body{
+  width:100%;
+  height: 200%;
+  background-color: black;
+  position:fixed;
+  left: 0;
+  top: 0;
+  // z-index: 9999;
+}
+
+.AppNavbar_none {
+  position:fixed;
+  // top:0px;
+  width: 100vw;
+  z-index: 1000;
+
+}
+
+
+.btn {
+  background-color: transparent=0;
+}
+
+//메인 애니매이션 부분
+
+.testing_main {
+  width:100vw;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left:0px;
+  top:0px;
+  background-color: pink;
+  height: 100%;
+  
+  z-index:2;
+}
+
+
+
+
+/////////@at-root
+
+.refresh_plz{
+  position: fixed;
+   left:50%;
+   top:50%;
+  color: gray;
+
+  z-index:-1
+
+}
+.sa1, .sa2, .sa3, .sa4, .sa5{
+  color: white;
+}
+
+.loginModal {
+  z-index:9999;
 }

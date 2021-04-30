@@ -7,7 +7,7 @@ import {
     USER_LOADING_REQUEST,
 } from "../../redux/types";
 import { Button, Row, Col, Container } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { GrowingSpinner } from "../../components/spinner/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,6 +27,8 @@ const PostDetail = (req) => {
     const { postDetail, creatorId, title, loading } = useSelector(
         (state) => state.post
     );
+    
+    const location = useLocation();
     //console.log(testing, "테스트중입니다.")
     const { userId, userName } = useSelector((state) => state.auth);
     const { comments } = useSelector((state) => state.comment);
@@ -41,7 +43,9 @@ const PostDetail = (req) => {
         dispatch({
             type: USER_LOADING_REQUEST,
             payload: localStorage.getItem("token"),
+            
         });
+        
     }, []);
 
     const onDeleteClick = () => {
@@ -53,7 +57,8 @@ const PostDetail = (req) => {
             },
         });
     };
-
+    console.log(location,"로케이ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ션");
+    
     console.log(postDetail, "포스트 디테일 확인하는 부분");
     const EditButton = (
         <Fragment>

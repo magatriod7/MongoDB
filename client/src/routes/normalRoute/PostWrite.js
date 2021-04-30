@@ -25,6 +25,7 @@ const PostWrite = () => {
 
 
     const onSubmit = async (e) => {
+
         await e.preventDefault();
         const { title, contents, fileUrl, category, creatorName } = form;
         const token = localStorage.getItem("token");
@@ -131,10 +132,10 @@ const PostWrite = () => {
                     </FormGroup>
                 </Form>
             ) : (
-                    <Col width={50} className="p-5 m-5">
-                        <Progress animated color="info" value={100} />
-                    </Col>
-                )}
+                <Col width={50} className="p-5 m-5">
+                    <Progress animated color="info" value={100} />
+                </Col>
+            )}
         </div>
     );
 };

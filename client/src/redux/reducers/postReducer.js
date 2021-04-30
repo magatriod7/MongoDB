@@ -11,6 +11,9 @@ import {
   POST_UPLOADING_REQUEST,
   POST_UPLOADING_SUCCESS,
   POST_UPLOADING_FAILURE,
+  POST_UPLOADING_REQUEST_VISITOR,
+  POST_UPLOADING_SUCCESS_VISITOR,
+  POST_UPLOADING_FAILURE_VISITOR,
   POST_EDIT_LOADING_REQUEST,
   POST_EDIT_LOADING_SUCCESS,
   POST_EDIT_LOADING_FAILURE,
@@ -128,6 +131,27 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
+
+    //POST UPLOADING_VISITOR
+
+    case POST_UPLOADING_REQUEST_VISITOR:
+      return {
+        ...state,
+        loading: true,
+      };
+    case POST_UPLOADING_SUCCESS_VISITOR:
+      return {
+        ...state,
+        posts: action.payload,
+        isAuthenticated: true,
+        loading: false,
+      };
+    case POST_UPLOADING_FAILURE_VISITOR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
 
 
     // POST_EDIT_LOADING

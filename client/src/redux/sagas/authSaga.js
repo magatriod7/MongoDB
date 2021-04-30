@@ -125,7 +125,7 @@ function* watchclearError() {
 
 
 const userLoadingAPI = (token) => {
-  console.log(token)
+  console.log(token, "토큰 확인중입니다.")
 
   const config = {
     headers: {
@@ -141,9 +141,11 @@ const userLoadingAPI = (token) => {
 function* userLoading(action) {
   try {
     console.log(action, "userLoading USER_LOADING_REQUEST 잘되는중")
+    // console.log(userLoadingAPI(action.payload, "아래와 값이 같이 나오지만 이 경우 promise 안에 들어 있다. 패이로드 확인중"));
     const result = yield call(userLoadingAPI, action.payload);//반환된 값을 action.payload에 넣게 되는데 이를 result에 다시 넣는다.
-    //   console.log(userLoadingAPI(action.payload), "아래와 값이 같이 나오지만 이 경우 promise 안에 들어 있다.");
-    //    console.log(result, "userLoading 콘솔");
+    // console.log(userLoadingAPI(action.payload, "아래와 값이 같이 나오지만 이 경우 promise 안에 들어 있다. 패이로드 확인중"));
+       console.log(result, "userLoading 콘솔");
+       console.log(action.payload, "auth payload 확인 중");
     yield put({
       type: USER_LOADING_SUCCESS,
       payload: result.data,

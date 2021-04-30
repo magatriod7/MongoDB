@@ -7,6 +7,8 @@ const loadUser = () => {
             type: USER_LOADING_REQUEST,
             payload: localStorage.getItem("token")
         });
+        console.log(store,"스토어에 대해서");
+        // console.log(payload,"패이로드란");
     } catch (e) {
         console.log(e);
     }

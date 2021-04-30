@@ -23,11 +23,21 @@ const ListWrite = () => {
 
     let { categoryName } = useParams();
     const { isAuthenticated, user } = useSelector((state) => state.auth);  ////store에서 state를 가져온다. 즉, authenticated, user, userRole를 받아온다.
-    const [form, setValues] = useState({ title: "", contents: "", fileUrl: "", creatorName: user.name });// inputstate를 저장할 useState
+    console.log(user, "유저 네임 확인중")
+    // if(user.name === undefined) {user.name = "비회원"}
+    const [form, setValues] = useState({ title: "", contents: "", fileUrl: "", creatorName: "" });// inputstate를 저장할 useState
     const dispatch = useDispatch();//reducer dispatch
     const onSubmit = async (e) => {
         await e.preventDefault();
-        const { title, contents, fileUrl, creatorName } = form;
+        const { title, contents, fileUrl } = form;
+        var creatorName = "";
+        if (user == undefined){
+            // console.log(form,"form 콘솔로깅")
+            creatorName = "비회원";
+        }
+        else {
+            creatorName = user.name;
+        }
         const category = categoryName
         const token = localStorage.getItem("token");
         const body = { title, contents, fileUrl, category, token, creatorName };
@@ -124,9 +134,7 @@ const ListWrite = () => {
                     </FormGroup>
                 </Form>
             ) : (
-                    <Col width={50} className="p-5 m-5">
-                        <Progress animated color="info" value={100} />
-                    </Col>
+                <div className = "only_club">정회원만 작성 가능합니다.</div>
                 )}
         </div>
     );

@@ -74,8 +74,9 @@ router.get("/", async (req, res) => {
 
 router.post("/", auth, uploadS3.none(), async (req, res, next) => {
   try {
-    //console.log(req, "req 포스팅부분 확인까지 왔습니다 흑흑");
+    console.log(req, "req 포스팅부분 확인까지 왔습니다 흑흑");
     const { title, contents, fileUrl, creator, category } = req.body;
+    console.log(req.body,"req.body daslkfjaslkfjlaskfjlak")
     const newPost = await Post.create({
       title,
       contents,
@@ -130,6 +131,64 @@ router.post("/", auth, uploadS3.none(), async (req, res, next) => {
 // @route POST/post/:id
 // @desc Detail Post
 // @access public
+
+
+router.post("/visitor", uploadS3.none(), async (req, res, next) => {
+  try {
+    console.log(req, "req 포스팅부분 확인까지 왔습니다 흑흑");
+    const { title, contents, fileUrl, creator, category } = req.body;
+    console.log(req.body,"req.body daslkfjaslkfjlaskfjlak")
+    const newPost = await Post.create({
+      title,
+      contents,
+      fileUrl,
+      creatorName: req.body.creatorName,
+      creator: "608bd4a61e8b6b1490c4207e",
+      date: moment().format("YYYY-MM-DD HH:mm:ss"),
+    });
+    console.log(moment().format("YYYY-MM-DD HH:mm:ss"), "모맨트 포먓 뭐가문제냐고!ㅁㄴ어ㅑㅁㄴ리ㅑㄴ머리ㅏㄴ머리남러ㅑㄴ미럼냐ㅣㅓㄹㄴ미ㅏ럼냐폄내ㅑ퍼매");
+    const findResult = await Category.findOne({
+      categoryName: category,
+    });
+
+    console.log()
+    //console.log(findResult, "Find Result!!!!");
+
+    if (findResult === undefined || findResult === null) {//카테고리가 없을 경우
+      const newCategory = await Category.create({
+        categoryName: category,
+      });
+      await Post.findByIdAndUpdate(newPost._id, {//위에서 만든 newPost.id로 찾고 category에 newCategory.id를 배열로 넣어달라는 뜻 $(배열로 넣다)
+        $push: { category: newCategory._id },
+      });
+      await Category.findByIdAndUpdate(newCategory._id, {//카테고리에서.id로 찾고 posts 안에 newPost.id를 넣어주세요
+        $push: { posts: newPost._id },
+      });
+      await User.findByIdAndUpdate(req.user.id, {//유저 id로 찾고  post 안에 _id를 넣어주세요
+        $push: {
+          posts: newPost._id,
+        },
+      });
+    } else {//카테고리가 모두 존재 한다면
+      await Category.findByIdAndUpdate(findResult._id, {
+        $push: { posts: newPost._id },
+      });
+      await Post.findByIdAndUpdate(newPost._id, {
+        category: findResult._id,
+      });
+      await User.findByIdAndUpdate("608bd4a61e8b6b1490c4207e", {
+        $push: {
+          posts: newPost._id,
+        },
+      });
+    }
+    console.log("serverpost 포스팅 완료");
+    return res.redirect(`/api/post/${newPost._id}`);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 
 router.get("/:id", async (req, res, next) => {
   //console.log("겟에 일단 들어는 왔는데....")
@@ -193,7 +252,7 @@ router.post("/:id/comments", async (req, res, next) => {
     newComment = await Comment.create({
       contents: req.body.contents,
       creator: "60333686f69c0850e09eaa08",
-      creatorName: "비회원",
+      creatorName: "손님",
       post: req.body.id,
       date: moment().format("YYYY-MM-DD HH:mm:ss"),
     });

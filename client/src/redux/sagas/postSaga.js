@@ -9,6 +9,9 @@ import {
   POST_UPLOADING_REQUEST,
   POST_UPLOADING_FAILURE,
   POST_UPLOADING_SUCCESS,
+  POST_UPLOADING_REQUEST_VISITOR,
+  POST_UPLOADING_FAILURE_VISITOR,
+  POST_UPLOADING_SUCCESS_VISITOR,
   POST_DETAIL_LOADING_SUCCESS,
   POST_DETAIL_LOADING_FAILURE,
   POST_DETAIL_LOADING_REQUEST,
@@ -111,6 +114,47 @@ function* watchuploadPosts() {
 }
 
 
+// post upload visitor Visitor
+
+
+const uploadVisitorPostAPI = (payload) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const token = payload.token;
+  if (token) {
+    config.headers["x-auth-token"] = token;
+    console.log(config.headers["x-auth-token"], "postsaga API configheader check")
+  }
+  console.log(payload, "업로드포스트에이피아이 패이로드");
+  return axios.post("/api/post/visitor", payload, config);//payload-> post내용, config -> 토큰
+};
+
+function* uploadVisitorPosts(action) {
+  try {
+    console.log(action, "uploadPost function");
+    const result = yield call(uploadVisitorPostAPI, action.payload);
+    console.log(result, "uploadPostAPI, action.payload");
+    yield put({
+      type: POST_UPLOADING_SUCCESS_VISITOR,
+      payload: result.data,
+    });
+    yield put(push(`/post/${result.data._id}`));//업로드 이후 해당 위치로 이동함
+  } catch (e) {
+    yield put({
+      type: POST_UPLOADING_FAILURE_VISITOR,
+      payload: e,
+    });
+    yield put(push("/"));
+  }
+}
+
+
+function* watchuploadVisitorPosts() {
+  yield takeEvery(POST_UPLOADING_REQUEST_VISITOR, uploadVisitorPosts);
+}
 
 
 
@@ -403,5 +447,6 @@ export default function* postSaga() {
     fork(watchPostEditUpload),
     fork(watchCategoryFind),
     fork(watchSearchResult),
+    fork(watchuploadVisitorPosts),
   ]);
 }

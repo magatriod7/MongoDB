@@ -17,7 +17,7 @@ import RegisterModal from "../components/auth/RegisterModal";
 import MenuList from "./MenuList";
 import MenuListWindow from "./MenuListWindow";
 import SearchInput from "./search/searchInput";
-
+import jQuery from "jquery"
 
 
 const AppNavbar = () => {
@@ -27,6 +27,8 @@ const AppNavbar = () => {
   );
   const [isWindowWidth, setWindowWidth] = useState(2);
   //console.log(userRole, "UserRole");
+
+  window.$ = window.jQuery = jQuery;
 
   const dispatch = useDispatch();//액션을 파라미터로 전달한다.
 
@@ -46,7 +48,7 @@ const AppNavbar = () => {
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     handleResize();
-    console.log(isWindowWidth, "왜이러는거야 흑흑");
+    // console.log(isWindowWidth, "왜이러는거야 흑흑");
     setIsOpen(false);
   }, [isWindowWidth]);//유저가 변할 때 isopen이 꺼진다.
 
@@ -75,10 +77,10 @@ const AppNavbar = () => {
               </Button>
             </Link>
           ) : (
-              <Button outline color="light" className="px-3" block>
-                <strong>No User</strong>
-              </Button>
-            )}
+            <Button outline color="light" className="px-3" block>
+              <strong>No User</strong>
+            </Button>
+          )}
         </Form>
       </NavItem>
       <NavItem>
@@ -105,45 +107,73 @@ const AppNavbar = () => {
   );
 
 
+
+  if( window.$(window).scrollTop() == 0) {
+    window.$(".AppNavbar_none").css("top", "0px");
+    console.log("테스트중입니다.");
+  }
+
   console.log(window.innerWidth);
+
+  var lastScrollTop = 0, delta = 15;
+
+  // window.$(".nav_main_link").click(function() {window.location.reload()})
+
+  window.$(window).scroll(function () {
+    var scrollTop = window.$(this).scrollTop() /* 스크롤바 수직 위치를 가져옵니다, 괄호 안에 값(value)이 있을 경우 스크롤바의 수직 위치를 정합니다. */
+    // Math.abs: 주어진 숫자의 절대값을 반환(return)합니다.
+    if (Math.abs(lastScrollTop - scrollTop) <= delta) // 스크롤 값을 받아서 ~
+      return; // ~ 리턴
+
+    if ((scrollTop > lastScrollTop) && (lastScrollTop > 0)) {
+      /* 화면에 나오지 않을 때, top값은 요소가 보이지 않을 정도로 사용해야함 */
+      window.$(".AppNavbar_none").css("top", "-100px");
+    } else {
+      window.$(".AppNavbar_none").css("top", "0px");
+    }
+    console.log("테스트중입니다.");
+    lastScrollTop = scrollTop;
+  });
 
 
 
   return (
     <Fragment>
 
-      {userRole === "MainJuin" ? (
-        <Form className="col mt-2">
-          <Link
-            to="/post"
-            className="btn btn-success block text-white px-3"
-            onClick={addPostClick}
-          >
-            Add Post
+      <div className="AppNavbar_none">
+        {userRole === "MainJuin" ? (
+          <Form className="col mt-2">
+            <Link
+              to="/post"
+              className="btn btn-success block text-white px-3"
+              onClick={addPostClick}
+            >
+              Add Post
             </Link>
-        </Form>
-      ) : (
+          </Form>
+        ) : (
           ""
         )}
 
-      <div className="AppNavBar">
-        <Navbar color="dark" dark expand="lg" className="sticky-top">
-          <Container className="">
-            <Link to="/" className="text-white text-decoration-none">
-              <h3>M</h3>
-            </Link>
-            <NavbarToggler onClick={handleToggle} />
-            <Collapse className="" isOpen={isOpen} navbar>
-              {/* <SearchInput isOpen={isOpen} /> */}
-              {isWindowWidth ? < MenuListWindow /> : < MenuList />}
+        <div className="AppNavBar">
+          <Navbar color="dark" dark expand="lg" className="sticky-top">
+            <div className="nav_body">
+              <Link to="/" className="text-white text-decoration-none nav_main_link">
+                <h3>M</h3>
+              </Link>
+              <NavbarToggler onClick={handleToggle} />
+              <Collapse className="Collapse_bar" isOpen={isOpen} navbar>
+                {/* <SearchInput isOpen={isOpen} /> */}
+                {isWindowWidth ? < MenuListWindow /> : < MenuList />}
 
 
-              <Nav className="top_menu_nav testing" navbar>
-                {isAuthenticated ? authLink : guestLink}
-              </Nav>
-            </Collapse >
-          </Container >
-        </Navbar >
+                <Nav className="top_menu_nav testing" navbar>
+                  {isAuthenticated ? authLink : guestLink}
+                </Nav>
+              </Collapse >
+            </div >
+          </Navbar >
+        </div>
       </div>
     </Fragment >
   );

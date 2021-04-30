@@ -98,16 +98,26 @@ const List = () => {
                     <Listdetail posts={currentPosts(listing)}> </Listdetail>
                     <Pagination postsPerPage={postsPerPage} totalPosts={listing.length} paginate={setCurrentPage} currentPage={currentPage}> </Pagination>
                 </div>
-
-                <Form className="col mt-2 mb-5">
-                    <Link
-                        to={`/post/list/${categoryName}/post`}
-                        className="btn btn-success block text-white px-3"
-                        onClick={addPostClick}
-                    >
-                        Add Post
-            </Link>
-                </Form>
+                {(categoryName == "손님게시판") ? 
+                    <Form className="col mt-2 mb-5">
+                        <Link
+                            to={`/post/list/${categoryName}/postvisitor`}
+                            className="btn btn-success block text-white px-3"
+                            onClick={addPostClick}
+                        >
+                                   손님게시판 Add Post
+                        </Link>
+                    </Form>:
+                    <Form className="col mt-2 mb-5">
+                        <Link
+                            to={`/post/list/${categoryName}/post`}
+                            className="btn btn-success block text-white px-3"
+                            onClick={addPostClick}
+                        >
+                         Add Post
+                        </Link>
+                    </Form>
+                }
             </Fragment>
         );
     }
