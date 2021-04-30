@@ -8,6 +8,11 @@
   background-color: #F6F6F6;
 
 }
+
+.main_body_div {
+  background-color: #fdfdfb;
+  padding: 20px 20px;
+}
 #main-footer {
   background: #343a40;
   color: #fff;
@@ -22,6 +27,8 @@
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+    background-color: #E0E0D8;
+
 
 }
 
@@ -43,7 +50,6 @@
   width: 90vw;
   margin-left: auto;
   margin-right: auto;
-  // background-color: greenyellow;
 }
 
 
@@ -231,7 +237,6 @@ border-left : none;
 }
 
 .top_menu_nav ul li:hover {
-// background-color : rgba(255,255,255, 0.3);
 }
 .top_menu_nav ul li .top_menu_link {
   
@@ -249,7 +254,6 @@ width:100%
 .top_menu_nav ul ul {
 // position : absolute;
 top : 100%;
-// background-color: rgba(0,0,0, 0.5);
 // left : -2px;
 
 background-color : rgba(255,255,255, 0.3);
@@ -258,7 +262,6 @@ background-color : rgba(255,255,255, 0.3);
 
 .plus_minus{
   display: inline-flex;
-  // background-color: gray;
   float:right;
   width: 30px;
   height:30px;
@@ -416,7 +419,6 @@ background-color:#6a6f74;
 
 // .plus_minus span{
 //   display: inline-block;
-//   background-color: hotpink;
 //   padding: 0;
 //   // line-height: 1;
 // }
@@ -428,7 +430,6 @@ background-color:#6a6f74;
   justify-content: space-between;
   align-items: center;
   width:100%;
-  // background-color: hotpink;
 }
 
 
@@ -559,7 +560,7 @@ background-color:#6a6f74;
      width:50%;
     flex: 1 auto;
     // border : tomato 1px solid;
-    background-color: tomato;
+    background-color: #98afcc;
     color:white;
     font-size: 20px;
     padding-left: 20px;      
@@ -572,7 +573,7 @@ background-color:#6a6f74;
 
 .table_creator_top{
   
-  background-color: tomato;
+  background-color: #98afcc;
   color:white;
     width:15%;
     flex: 1 auto;
@@ -590,7 +591,7 @@ background-color:#6a6f74;
 .table_date_top{
   flex: 1 auto;
     font-size: 20px;
-    background-color: tomato;
+    background-color: #98afcc;
     color:white;
   // border : tomato 1px solid;
   width: 20%;
@@ -604,7 +605,7 @@ background-color:#6a6f74;
   border-radius: 0px 10px 10px 0px;
 
    flex: 1 auto;
-    background-color: tomato;
+    background-color: #98afcc;
     color:white;
     font-size: 20px;
   display: block;
@@ -620,7 +621,6 @@ background-color:#6a6f74;
  width:50%;
  flex: 1 auto;
  // border : tomato 1px solid;
- //background-color: tomato;
  //color:white;
  font-size: 20px;
  padding-left: 20px;      
@@ -634,7 +634,6 @@ background-color:#6a6f74;
 }
 .table_creator{
   
- // background-color: tomato;
   //color:white;
    width:15%;
    flex: 1 auto;
@@ -653,7 +652,6 @@ background-color:#6a6f74;
 .table_date{
   flex: 1 auto;
     font-size: 20px;
-   // background-color: tomato;
   //  color:white;
   // border : tomato 1px solid;
   width: 20%;
@@ -666,7 +664,6 @@ background-color:#6a6f74;
   //border-radius: 0px 10px 10px 0px;
 
   flex: 1 auto;
-    //background-color: tomato;
  //   color:white;
     font-size: 20px;
   display: block;
@@ -764,6 +761,15 @@ background-color:#6a6f74;
 
 .btn {
   background-color: transparent=0;
+}
+
+.btn_color {
+  background-color: #A59C91;
+}
+
+.btn_color:hover{
+  background-color: #857c71;
+
 }
 
 //메인 애니매이션 부분

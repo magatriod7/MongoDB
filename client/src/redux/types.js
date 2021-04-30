@@ -105,3 +105,9 @@ export const PASSWORD_EDIT_UPLOADING_SUCCESS =
 export const LIST_REQUEST = "LIST_REQUEST";
 export const LIST_FAILURE = "LIST_FAILURE";
 export const LIST_SUCCESS = "LIST_SUCCESS";
+
+// Main Request
+
+export const MAIN_REQUEST = "MAIN_REQUEST";
+export const MAIN_SUCCESS = "MAIN_SUCCESS";
+export const MAIN_FAILURE = "MAIN_FAILURE";

@@ -33,6 +33,7 @@ const List = () => {
     };
 
     let { categoryName } = useParams();
+    // console.log(categoryName,"카테고리 네임의 파아ㅏㅏㅏㅏㅏㅏㅏㅏㅏ람");
     const [currentPage, setCurrentPage] = useState(1)
     const [postsPerPage, setPostsPerPage] = useState(5)
     const { posts, categoryFindResult, loading, postCount } = useSelector(
@@ -66,12 +67,12 @@ const List = () => {
     }
 
 
-    console.log(categoryFindResult);
-    console.log(categoryName);
-    console.log(categoryFindResult.posts, "포스트")
-    console.log(posts, "포스트")
-    console.log(listing, "listing")
-    console.log(currentPage)
+    // console.log(categoryFindResult);
+    // console.log(categoryName);
+    // console.log(categoryFindResult.posts, "포스트")
+    // console.log(posts, "포스트")
+    // console.log(listing, "listing")
+    // console.log(currentPage)
 
 
     useEffect(() => {
@@ -83,7 +84,7 @@ const List = () => {
 
 
     if (listing) {
-        console.log(totalpage, "여기인가")
+        // console.log(totalpage, "여기인가")
 
         // listing = listing.reverse();
         return (
@@ -102,7 +103,7 @@ const List = () => {
                     <Form className="col mt-2 mb-5">
                         <Link
                             to={`/post/list/${categoryName}/postvisitor`}
-                            className="btn btn-success block text-white px-3"
+                            className="btn btn_color block text-white px-3"
                             onClick={addPostClick}
                         >
                                    손님게시판 Add Post
@@ -111,7 +112,7 @@ const List = () => {
                     <Form className="col mt-2 mb-5">
                         <Link
                             to={`/post/list/${categoryName}/post`}
-                            className="btn btn-success block text-white px-3"
+                            className="btn btn_color block text-white px-3"
                             onClick={addPostClick}
                         >
                          Add Post

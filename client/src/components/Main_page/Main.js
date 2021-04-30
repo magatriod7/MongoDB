@@ -5,25 +5,46 @@ import { Helmet } from "react-helmet";
 import "./css/reset.css";
 import "./css/style.css";
 // import {velocity} from "velocity-react"
-// import velocity from "./js/velocity.min.js"
-// import velocity from "./js/velocity.ui.min.js"
+// import "./js/velocity.min.js"
+// import "./js/velocity.ui.min.js"
+// import "./js/jquery-2.1.4.js"
+// import "./js/modernizr.js"
+// import "./js/main.js"
 import jQuery from "jquery"
-// import List from "./List"
-// import SmallList from "./SmallList"
+
+
 
 window.$ = window.jQuery = jQuery;
 
 
 const Main = () => {
+    const [counter, setCounter] = useState(0);
+
     
-    const [islocation, setIslocation] = useState(0);
-    console.log(islocation);
+    // console.log();
     useEffect(() => {
-
-            if(islocation == 1){window.location.reload(); // 새로고침}
-    }
-
-    }, [islocation]);
+        // setCounter(counter + 1);
+        let localNum = localStorage.getItem('counter')
+        console.log(localNum,"로컬넘버 확인용");
+        
+        if (localNum == undefined){
+        localStorage.setItem('counter', 1)
+        console.log(localNum,"로컬넘버 생성 1로");
+        }
+        else if(localNum == 0)
+        {
+            localNum = 1;
+            localStorage.setItem('counter', 1)
+            console.log(localNum,"로컬넘버 1이 됨");
+        }
+        else {
+            localNum = 0;
+            localStorage.setItem('counter', 0)
+            console.log(localNum,"로컬넘버 새로고침, 0이됨");
+            window.location.reload();
+        }
+        console.log("매인 리 렌더링 되는지 확인중입니다. 카운터의 값은?", counter)
+    }, []);
 
 
 
@@ -36,7 +57,7 @@ const Main = () => {
             <div className = "testing_main" data-hijacking = "on" data-animation ="rotate">
             <section className="cd-section visible sa1">
                 <div>
-                    <h2>Section 1</h2>
+                    <h2>MAZE에 오신 것을 환영합니다.</h2>
                 </div>
             </section>
 

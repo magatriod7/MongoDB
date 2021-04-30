@@ -24,7 +24,7 @@ import {
 // Login
 
 const loginUserAPI = (loginData) => {
-  console.log(loginData, "loginData", "loginUserAPI 콘솔");
+  // console.log(loginData, "loginData", "loginUserAPI 콘솔");
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +37,7 @@ function* loginUser(action) {
   try {
     const result = yield call(loginUserAPI, action.payload);//반환된 값을 action.payload에 넣게 되는데 이를 result에 다시 넣는다.
     //console.log(loginUserAPI(action.payload), "아래와 값이 같이 나오지만 이 경우 promise 안에 들어 있다.");
-    console.log(result, "loginUser 콘솔");
+    // console.log(result, "loginUser 콘솔");
     yield put({
       type: LOGIN_SUCCESS,
       payload: result.data,
@@ -76,7 +76,7 @@ function* watchlogout() {
 // Register
 
 const registerUserAPI = (req) => {
-  console.log(req, "req");
+  // console.log(req, "req");
 
   return axios.post("api/user", req);
 };
@@ -84,7 +84,7 @@ const registerUserAPI = (req) => {
 function* registerUser(action) {
   try {
     const result = yield call(registerUserAPI, action.payload);
-    console.log(result, "RegisterUser Data");
+    // console.log(result, "RegisterUser Data");
     yield put({
       type: REGISTER_SUCCESS,
       payload: result.data,
@@ -125,7 +125,7 @@ function* watchclearError() {
 
 
 const userLoadingAPI = (token) => {
-  console.log(token, "토큰 확인중입니다.")
+  // console.log(token, "토큰 확인중입니다.")
 
   const config = {
     headers: {
@@ -140,12 +140,12 @@ const userLoadingAPI = (token) => {
 
 function* userLoading(action) {
   try {
-    console.log(action, "userLoading USER_LOADING_REQUEST 잘되는중")
+    // console.log(action, "userLoading USER_LOADING_REQUEST 잘되는중")
     // console.log(userLoadingAPI(action.payload, "아래와 값이 같이 나오지만 이 경우 promise 안에 들어 있다. 패이로드 확인중"));
     const result = yield call(userLoadingAPI, action.payload);//반환된 값을 action.payload에 넣게 되는데 이를 result에 다시 넣는다.
     // console.log(userLoadingAPI(action.payload, "아래와 값이 같이 나오지만 이 경우 promise 안에 들어 있다. 패이로드 확인중"));
-       console.log(result, "userLoading 콘솔");
-       console.log(action.payload, "auth payload 확인 중");
+      //  console.log(result, "userLoading 콘솔");
+      //  console.log(action.payload, "auth payload 확인 중");
     yield put({
       type: USER_LOADING_SUCCESS,
       payload: result.data,
@@ -185,11 +185,11 @@ const EditPasswordAPI = (payload) => {
 
 function* EditPassword(action) {
   try {
-    console.log(action, "EditPassword");
+    // console.log(action, "EditPassword");
     const result = yield call(EditPasswordAPI, action.payload);
-    console.log(result);
-    console.log(result.data);
-    console.log("여기서 멈춰부렸따");
+    // console.log(result);
+    // console.log(result.data);
+    // console.log("여기서 멈춰부렸따");
     yield put({
       type: PASSWORD_EDIT_UPLOADING_SUCCESS,
       payload: result,

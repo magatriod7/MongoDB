@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 const Listdetail = ({ posts }) => {
 
 
-    console.log("posts.creator.name", posts)
+    // console.log("posts.creator.name", posts)
     if (posts[0] == 0) return <div></div>
-    console.log(posts, "리스트 내부 확인용")
+    // console.log(posts, "리스트 내부 확인용")
     return (
         <div>
             {/* <ul>
