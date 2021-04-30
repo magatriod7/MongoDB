@@ -44,9 +44,11 @@
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
     "axios": "^0.19.2",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "8.1.0",
     "babel-plugin-named-asset-import": "^0.3.6",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-preset-react-app": "^9.1.2",
     "bootstrap": "^4.5.3",
     "camelcase": "^5.3.1",
@@ -134,7 +136,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:7000",
+  "proxy": "http://localhost:8080",
   "jest": {
     "roots": [
       "<rootDir>/src"
@@ -189,6 +191,5 @@
     ]
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0"
   }
 }

@@ -395,6 +395,8 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+                  // 웹팩 콘솔로그 설정
+                  ['transform-remove-console', {exclude: ["error", "warn"]}]
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
