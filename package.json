@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./server/server.js --exec babel-node --ignore './client'",
+    "dev": " nodemon ./server/server.js --exec babel-node --ignore './client' ",
     "prebuild": "cd client && npm run build",
-    "build": "babel server --out-dir build",
+    "build": " babel server --out-dir build ",
     "build:server": "babel server --out-dir build"
   },
   "repository": {
@@ -25,29 +25,35 @@
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "eslint": "^6.6.0",
+    "eslint": "^6.8.0",
     "express": "^4.17.1",
-    "helmet": "^4.2.0",
+    "helmet": "^4.5.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
-    "mongoose": "^5.11.8",
+    "mongoose": "^5.12.7",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
     "node-sass": "^4.14.1",
     "path": "^0.12.7",
-    "pug": "^3.0.0",
+    "pug": "^3.0.2",
     "request": "^2.88.2",
-    "sass-loader": "^10.1.0",
+    "sass-loader": "^10.1.1",
     "util": "^0.12.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/node": "^7.12.10",
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "@babel/node": "^7.13.13",
     "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.12.11",
-    "babel-loader": "^8.1.0",
+    "@babel/preset-env": "^7.14.0",
+    "babel-loader": "^8.2.2",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.7"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
