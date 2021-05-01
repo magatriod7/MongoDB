@@ -5,7 +5,7 @@ const router = express.Router();
 import Post from "../../models/post"
 import Category from "../../models/category"
 import User from "../../models/user"
-import "babel/polyfill";
+import "@babel/polyfill";
 import auth from "../../middleware/auth"
 import moment from "moment"
 
