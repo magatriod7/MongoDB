@@ -1,0 +1,7 @@
+MONGO_URI = mongodb+srv://magatriod7:19930821@cluster0.ilzmt.mongodb.net/cluste>
+JWT_SECRET = maze_secret
+PORT = '80'
+AWS_KEY="AKIAIHEO4KSFnpVGC7XPJQ"
+AWS_PRIVATE_KEY="mUsBK3c4igHMnp+jpE8UIYWlCLik26MQucvQch5D"
+NODE_ENV="production"
+
