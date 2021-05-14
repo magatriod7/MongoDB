@@ -65,6 +65,13 @@
   object-fit: cover;
 }
 
+//postWrite
+
+.Postwrite{
+  border:1px rgb(201, 198, 198) solid;
+}
+
+
 
 
 // CkEditor5 Setting
@@ -75,12 +82,12 @@
 }
 
 .ck-editor__editable {
-  max-height: 80rem;
+  max-height: 1000rem;
   min-height: 20rem;
   min-width: 100rem;
 }
 .ck-editor__editable_inline {
-  max-height: 80rem;
+  max-height: 1000rem;
   min-height: 20rem;
   min-width: 100%;
 }

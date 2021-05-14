@@ -101,7 +101,7 @@ const MenuList = () => {
                                 <li>  <Link to="/post/list/공지사항" className="top_menu_link"> 공지사항 </Link> </ li>
                                 <li>  <Link to="/post/list/자유게시판" className="top_menu_link"> 자유게시판 </Link> </ li>
                                 <li>  <Link to="/post/list/손님게시판" className="top_menu_link"> 손님게시판 </Link> </ li>
-                                {isAuthenticated ?
+                                {isAuthenticated  && (userRole == 'MainJuin' | userRole == 'SubJuin') ?
                                     <li>  <Link to="/post/list/정회원게시판" className="top_menu_link"> 정회원게시판 </Link> </ li> : <div></div>}
                             </ ul>
                         </Collapse>
@@ -113,7 +113,7 @@ const MenuList = () => {
                             <ul>
                                 <li onClick={handleToggleCompetitonClose}>  <Link to="/post/list/MAZE전시회" className="top_menu_link"> MAZE 전시회 </Link> </ li>
                                 <li onClick={handleToggleCompetiton_1}>
-                                    <div to="" className="top_menu_link"> 단국대 대회 수상자 {isOpenCompetiton_1 ? Minus_tap : Plus_tap}</div>
+                                    <div to="/post/list/스텝 트레이서" className="top_menu_link"> 단국대 대회 수상자 {isOpenCompetiton_1 ? Minus_tap : Plus_tap}</div>
                                     <ul >
                                         <Collapse isOpen={isOpenCompetiton_1}>
                                             <li onClick={handleToggleCompetitonClose}>  <Link to="/post/list/스텝 트레이서" className="top_menu_link"> 스텝 트레이서 </Link> </ li>
@@ -123,7 +123,7 @@ const MenuList = () => {
                                     </ ul >
                                 </ li >
                                 <li onClick={handleToggleCompetiton_2}>
-                                    <div to="" className="top_menu_link"> sub nav {isOpenCompetiton_2 ? Minus_tap : Plus_tap} </div>
+                                    <div to="top_menu_link" className="top_menu_link"> sub nav {isOpenCompetiton_2 ? Minus_tap : Plus_tap} </div>
                                     <ul >
                                         <Collapse isOpen={isOpenCompetiton_2}>
                                             <li onClick={handleToggleCompetitonClose}>  <Link to="" className="top_menu_link"> child </Link> </ li>

@@ -39,7 +39,7 @@ const List = () => {
     const { posts, categoryFindResult, loading, postCount } = useSelector(
         (state) => state.post
     );//값들을 다 받았음
-
+    console.log(categoryFindResult.posts,"테스트 중입니다 카테고리 파인드 리저트");
     let listing = categoryFindResult.posts//.reverse()
     if (listing === undefined) { listing = [0] }
     const dispatch = useDispatch();

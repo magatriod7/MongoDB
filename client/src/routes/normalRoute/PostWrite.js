@@ -94,12 +94,12 @@ const PostWrite = () => {
             {isAuthenticated ? (
                 <Form onSubmit={onSubmit}>
                     <FormGroup className="mb-3">
-                        <Label for="title">Title</Label>
+                        <Label for="title">Title 테스트 중</Label>
                         <Input
                             type="text"
                             name="title"
                             id="title"
-                            className="form-control"
+                            className="form-control Postwrite"
                             onChange={onChange}
                         />
                     </FormGroup>
@@ -109,7 +109,7 @@ const PostWrite = () => {
                             type="text"
                             name="category"
                             id="category"
-                            className="form-control"
+                            className="form-control Postwrite"
                             onChange={onChange}
                         />
                     </FormGroup>

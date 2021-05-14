@@ -90,35 +90,35 @@ const MenuListWindow = () => {
             <nav className="top_menu_nav_Window">
                 <ul>
                     <li> <Link to="/post/60348b1452a7ca64442a5af6" className="top_menu_link"> 소개 </Link> </ li>
-                    <li> <Link to="" className="top_menu_link"> 게시판 </Link>
+                    <li> <Link to="/post/list/공지사항" className="top_menu_link"> 게시판 </Link>
                         <ul>
                             <li>  <Link to="/post/list/공지사항" className="top_menu_link"> 공지사항 </Link> </ li>
                             <li>  <Link to="/post/list/자유게시판" className="top_menu_link"> 자유게시판 </Link> </ li>
                             <li>  <Link to="/post/list/손님게시판" className="top_menu_link"> 손님게시판 </Link> </ li>
-                            {isAuthenticated ?
+                            {isAuthenticated  && (userRole == 'MainJuin' | userRole == 'SubJuin')  ?
                                 <li>  <Link to="/post/list/정회원게시판" className="top_menu_link"> 정회원게시판 </Link> </ li> : <div></div>}
                         </ ul>
                     </ li>
                     <li>
-                        <Link to="" className="top_menu_link"> 대회 및 전시회 </Link>
+                        <Link to="/post/list/MAZE전시회" className="top_menu_link"> 대회 및 전시회 </Link>
                         <ul>
                             <li>  <Link to="/post/list/MAZE전시회" className="top_menu_link"> MAZE 전시회 </Link> </ li>
                             <li>
-                                <Link to="" className="top_menu_link"> 단국대 대회 </Link>
+                                <Link to="/post/list/스텝 트레이서" className="top_menu_link"> 단국대 대회 </Link>
                                 <ul>
                                     <li>  <Link to="/post/list/스텝 트레이서" className="top_menu_link"> 스텝 트레이서 </Link> </ li>
                                     <li>  <Link to="/post/list/DC 트레이서" className="top_menu_link"> DC 트레이서 </Link> </ li >
                                     <li>  <Link to="/post/list/마이크로 마우스" className="top_menu_link"> 마이크로 마우스 </Link> </ li >
                                 </ ul >
                             </ li >
-                            <li>
+                            {/* <li>
                                 <Link to="/" className="top_menu_link"> sub nav </Link>
                                 <ul>
                                     <li>  <Link to="" className="top_menu_link"> child </Link> </ li>
                                     <li>  <Link to="" className="top_menu_link"> child </Link> </ li >
                                     <li>  <Link to="" className="top_menu_link"> child </Link> </ li >
                                 </ ul >
-                            </ li >
+                            </ li > */}
                         </ ul >
                     </ li >
                     <li>  <Link to="/test" className="top_menu_link"> 사진첩 </Link> </ li >

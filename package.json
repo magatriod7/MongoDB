@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/magatriod7/MongoDB#readme",
   "dependencies": {
+    "@react-spring/konva": "^9.1.2",
+    "@react-spring/native": "^9.1.2",
+    "@react-spring/three": "^9.1.2",
+    "@react-spring/web": "^9.1.2",
+    "@react-spring/zdog": "^9.1.2",
     "aws-sdk": "^2.828.0",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
@@ -37,6 +42,7 @@
     "node-sass": "^4.14.1",
     "path": "^0.12.7",
     "pug": "^3.0.2",
+    "react-spring": "^9.1.2",
     "request": "^2.88.2",
     "sass-loader": "^10.1.1",
     "util": "^0.12.3"

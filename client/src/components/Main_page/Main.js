@@ -4,6 +4,7 @@ import { useLocation, Switch, Route, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import "./css/reset.css";
 import "./css/style.css";
+import { useSpring, animated} from 'react-spring'
 // import {velocity} from "velocity-react"
 // import "./js/velocity.min.js"
 // import "./js/velocity.ui.min.js"
@@ -11,6 +12,7 @@ import "./css/style.css";
 // import "./js/modernizr.js"
 // import "./js/main.js"
 import jQuery from "jquery"
+import Main_Page_1 from "./Mainpages/Mainpage_1"
 
 
 
@@ -56,9 +58,7 @@ const Main = () => {
         <Fragment>
             <div className = "testing_main" data-hijacking = "on" data-animation ="rotate">
             <section className="cd-section visible sa1">
-                <div>
-                    <h2>MAZE에 오신 것을 환영합니다.</h2>
-                </div>
+                <Main_Page_1/>
             </section>
 
             <section className="cd-section  sa2">
@@ -92,7 +92,7 @@ const Main = () => {
                 </ul>
             </nav>
             
-            <div className="refresh_plz">메인 화면을 보기 위해서는 새로고침을 해 주세요!</div>
+            <div className="refresh_plz"></div>
             </div>
         </Fragment>
     )

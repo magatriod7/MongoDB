@@ -37,6 +37,7 @@ const initialState = {
   error: "",
   creatorId: "",
   categoryFindResult: "",
+  picturelist:"",
   title: "",
   searchBy: "",
   searchResult: "",
@@ -55,8 +56,8 @@ export default function (state = initialState, action) {
     case POSTS_LOADING_SUCCESS:
       return {
         ...state,
-        posts: [...state.posts, ...action.payload.postFindResult],
-        categoryFindResult: action.payload.categoryFindResult,
+        posts: [...state.posts, ...action.payload.posts],
+        // categoryFindResult: action.payload.categoryFindResult,
         loading: false,
       };
     case POSTS_LOADING_FAILURE:
@@ -204,7 +205,7 @@ export default function (state = initialState, action) {
     case CATEGORY_FIND_REQUEST:
       return {
         ...state,
-        posts: [],
+        categoryFindResult: [],
         loading: true,
       };
     case CATEGORY_FIND_SUCCESS:

@@ -41,7 +41,8 @@ const loadPostAPI = () => {
 function* loadPosts() {
   try {
     const result = yield call(loadPostAPI);
-    result.data.postFindResult = result.data.postFindResult.reverse()
+    console.log(result.data.posts, "확인중입니다.");
+    // result.data.posts = result.data.posts;
     console.log(result, "loadedPosts");
     console.log("POSTS_LOADING_SUCCESS");
     yield put({
@@ -53,7 +54,8 @@ function* loadPosts() {
       type: POSTS_LOADING_FAILURE,
       payload: e,
     });
-    yield put(push("/"));
+    console.log(e,"error POSTS_LOADING_FAILURE ");
+    // yield put(push("/"));
   }
 }
 
@@ -387,12 +389,13 @@ const CategoryFindAPI = (payload) => {
 function* CategoryFind(action) {
   try {
     const result = yield call(CategoryFindAPI, action.payload);
-    console.log(result, "카테고리 파인드 에이피아이")
+    console.log(result, "카테고리 파인드 에이피아이 -> 이것은 포스트 사가에 있음")
     yield put({
       type: CATEGORY_FIND_SUCCESS,
       payload: result.data,
     });
   } catch (e) {
+    console.log(e,"여기에 이러이러한 에러가 있긴 한거 같아.")
     yield put({
       type: CATEGORY_FIND_FAILURE,
       payload: e,

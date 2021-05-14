@@ -22,7 +22,7 @@ dotenv.config();
 const ListWrite = () => {
 
     let { categoryName } = useParams();
-    const { isAuthenticated, user } = useSelector((state) => state.auth);  ////store에서 state를 가져온다. 즉, authenticated, user, userRole를 받아온다.
+    const { isAuthenticated, user, userRole } = useSelector((state) => state.auth);  ////store에서 state를 가져온다. 즉, authenticated, user, userRole를 받아온다.
     console.log(user, "유저 네임 확인중")
     // if(user.name === undefined) {user.name = "비회원"}
     const [form, setValues] = useState({ title: "", contents: "", fileUrl: "", creatorName: "" });// inputstate를 저장할 useState
@@ -103,7 +103,7 @@ const ListWrite = () => {
 
     return (
         <div>
-            {isAuthenticated ? (
+            {isAuthenticated  && ( userRole == 'MainJuin' | userRole == 'SubJuin' )  ? (
                 <Form onSubmit={onSubmit}>
                     <FormGroup className="mb-3">
                         <Label for="title">Title</Label>

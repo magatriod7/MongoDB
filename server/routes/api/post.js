@@ -53,15 +53,35 @@ router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {//
 
 // api/post
 router.get("/", async (req, res) => {
-  const postFindResult = await Post.find()
-    .populate({ path: "creator", select: "name" })//populate는 연결된 것들을  만들어주라고 요청하는 것
-    .populate({ path: "category", select: "categoryName" });
 
-  const categoryFindResult = await Category.find();
-  const result = { postFindResult, categoryFindResult };
+  try {
+    const result = await Category.findOne(
+      {
+        categoryName: {
+          $regex: "사진첩",//mongodb 정규표현 다음 내용의 글들을 찾아라!
+          $options: "i",//mongodb 정규표현 덜 민감하게 찾는다
+        },
+      },//posts부분에서 찾아라
+      "posts"
+    ).populate({ path: "posts", options: { sort: { 'date': -1 } } });//posts 저장
 
-  res.json(result);
-  console.log(postFindResult, "All Post Get");
+    console.log(result, "Category Find result");
+
+    res.send(result);
+  } catch (e) {
+    console.log(e,"에러있다고?");
+    next(e);
+  }
+
+  // const postFindResult = await Post.find()
+  //   .populate({ path: "creator", select: "name" })//populate는 연결된 것들을  만들어주라고 요청하는 것
+  //   .populate({ path: "category", select: "categoryName" });
+
+  // const categoryFindResult = await Category.find();
+  // const result = { postFindResult, categoryFindResult };
+
+  // res.json(result);
+  // console.log(postFindResult, "All Post Get");
   //res.json(postFindResult);
 });
 
@@ -91,6 +111,7 @@ router.post("/", auth, uploadS3.none(), async (req, res, next) => {
       categoryName: category,
     });
 
+    
     console.log()
     //console.log(findResult, "Find Result!!!!");
 

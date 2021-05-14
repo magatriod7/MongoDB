@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import {
     Form,
     FormGroup,
@@ -95,7 +96,7 @@ const PostEdit = () => {
 
     return (
         <div>
-            {isAuthenticated ? (
+            {isAuthenticated  ? (
                 <Form onSubmit={onSubmit}>
                     <FormGroup className="mb-3">
                         <Label for="title">Title</Label>
