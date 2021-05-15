@@ -13,6 +13,9 @@ import { useSpring, animated} from 'react-spring'
 // import "./js/main.js"
 import jQuery from "jquery"
 import Main_Page_1 from "./Mainpages/Mainpage_1"
+import Main_Page_2 from "./Mainpages/Main_Page_2"
+import Main_Page_3 from "./Mainpages/Main_Page_3"
+import BouncingBall from "./Mainpages/Bouncing/Bouncing"
 
 
 
@@ -58,30 +61,24 @@ const Main = () => {
         <Fragment>
             <div className = "testing_main" data-hijacking = "on" data-animation ="rotate">
             <section className="cd-section visible sa1">
-                <Main_Page_1/>
+                <Main_Page_3/>
             </section>
 
             <section className="cd-section  sa2">
-                <div>
-                    <h2>Section 2</h2>
-                </div>
+                <Main_Page_1/>
             </section>
 
             <section className="cd-section sa3">
-                <div>
-                    <h2>Section 3</h2>
-                </div>
+                <Main_Page_2/>
             </section>
 
             <section className="cd-section sa4">
-                <div>
-                    <h2>Section 4</h2>
-                </div>
+                <Main_Page_2/>
             </section>
 
             <section className="cd-section sa5">
                 <div>
-                    <h2>Section 5</h2>
+                    <h2>환영합니다!</h2>
                 </div>
             </section>
 

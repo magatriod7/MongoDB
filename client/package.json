@@ -69,6 +69,7 @@
     "eslint-plugin-react-hooks": "^1.6.1",
     "extract-loader": "^5.1.0",
     "file-loader": "4.3.0",
+    "framer-motion": "^4.1.16",
     "fs-extra": "^8.1.0",
     "history": "^4.7.2",
     "html-webpack-plugin": "4.0.0-beta.11",
@@ -91,8 +92,10 @@
     "raw-loader": "^3.1.0",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
+    "react-card-flip": "^1.1.1",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
+    "react-flipcard": "^0.2.1",
     "react-helmet": "^6.1.0",
     "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
@@ -136,7 +139,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:7000",
+  "proxy": "http://localhost:8080",
   "jest": {
     "roots": [
       "<rootDir>/src"
@@ -190,6 +193,5 @@
       "react-app"
     ]
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

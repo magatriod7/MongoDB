@@ -65,6 +65,281 @@
   object-fit: cover;
 }
 
+//Main_page;
+
+.Page_1 {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  // justify-content: space-around;
+		
+}
+
+.Page_1_center {
+  align-items: center;
+  justify-content: center;
+
+}
+
+.Flip_card {
+  display: flex;
+  // display: block;
+  position:relative;
+  background-color: green;
+  height: 50vh;
+  width: 30vh;
+  color: black;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  margin-left: 10vw;
+  border-radius: 5% 5% 5% 5%;
+}
+
+.Flipcard_picture {
+  
+  border-radius: 5% 5% 0 0;
+  // display: block;
+  height : 50%;
+  width : 100%;
+  background-color: black;
+}
+
+.Flipcard_text{
+  height:50%;
+  width : 100%;
+  border-radius: 0 0 5% 5%;
+  background-color: white;
+}
+
+
+h5
+{
+  color: black;
+  margin:0px;
+  font-size:1.4em;
+  font-weight:700;
+}
+
+p
+{
+  font-size:12px;
+}
+
+.center
+{
+  height:100vh;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* End Non-Essential  */
+
+.property-card
+{
+  height:100%;
+  width:100%;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  position:relative;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border-radius:16px;
+  overflow:hidden;
+  // -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+  // box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+}
+/* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
+
+/* Top Half of card, image. */
+
+.property-image
+{
+  height:70%;
+  width:100%;
+  padding:1em 2em;
+  position:Absolute;
+  top:0px;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  background-image:url('https://cdn.photographylife.com/wp-content/uploads/2017/01/What-is-landscape-photography.jpg');
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+
+/* Bottom Card Section */
+
+.property-description
+{
+  display: flex;
+  background-color: #FAFAFC;
+  height:30%;
+  width:100%;
+  position:absolute;
+  bottom:0em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 0.5em 1em;
+  align-items: center;
+  text-align:center;
+  justify-content: center;
+}
+
+/* Social Icons */
+
+.property-social-icons
+{
+  width:1em;
+  height:1em;
+  background-color:black;
+  position:absolute;
+  bottom:1em;
+  left:1em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Property Cards Hover States */
+
+// .property-card:hover .property-description
+// {
+//   height:0em;
+//   padding:0px 1em;
+// }
+// .property-card:hover .property-image
+// {
+//   height:18em;
+// }
+
+// .property-card:hover .property-social-icons
+// {
+//   background-color:white;
+// }
+
+// .property-card:hover .property-social-icons:hover
+// {
+//   background-color:blue;
+//   cursor:pointer;
+// }
+
+// 전시회용 헤더.
+
+
+.ex_property-card
+{
+  
+  height:100%;
+  width:100%;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  position:relative;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border-radius:16px;
+  overflow:hidden;
+  // -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+  // box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+}
+/* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
+
+/* Top Half of card, image. */
+
+.ex_property-image
+{
+  height:30%;
+  width:100%;
+  padding:1em 2em;
+  position:Absolute;
+  top:0px;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  background-image:url('https://cdn.photographylife.com/wp-content/uploads/2017/01/What-is-landscape-photography.jpg');
+  background-size:cover;
+  // resize:cover;
+  background-repeat:no-repeat;
+  background-position: 50% 0;
+}
+
+/* Bottom Card Section */
+
+.ex_property-description
+{
+  background-color: #FAFAFC;
+  height: 70%;
+  width:100%;
+  position:absolute;
+  bottom:0em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 0.5em 1em;
+  text-align:center;
+}
+
+/* Social Icons */
+
+.ex_property-social-icons
+{
+  width:1em;
+  height:1em;
+  background-color:black;
+  position:absolute;
+  bottom:1em;
+  left:1em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Property Cards Hover States */
+
+.ex_property-card:hover .ex_property-description
+{
+  height:15%;
+  // padding:0px 1em;
+}
+.ex_property-card:hover .ex_property-image
+{
+  height:85%;
+}
+
+.ex_property-card:hover .ex_property-social-icons
+{
+  background-color:white;
+}
+
+.ex_property-card:hover .ex_property-social-icons:hover
+{
+  background-color:blue;
+  cursor:pointer;
+ }
+
+
+
+
+
+
+
+
 //postWrite
 
 .Postwrite{
