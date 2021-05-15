@@ -24,6 +24,8 @@ const bounceTransition = {
 };
 
 const BouncingBall = () => {
+    
+
   return (
     <div className="bouncing_ball"
       style={{

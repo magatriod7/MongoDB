@@ -109,42 +109,50 @@ router.post("/image", uploadS3.array("upload", 5), /*#__PURE__*/function () {
 
 router.get("/", /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
-    var postFindResult, categoryFindResult, result;
+    var result;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
-            return _post["default"].find().populate({
-              path: "creator",
-              select: "name"
-            }) //populate는 연결된 것들을  만들어주라고 요청하는 것
-            . //populate는 연결된 것들을  만들어주라고 요청하는 것
-            populate({
-              path: "category",
-              select: "categoryName"
+            _context2.prev = 0;
+            _context2.next = 3;
+            return _category["default"].findOne({
+              categoryName: {
+                $regex: "사진첩",
+                //mongodb 정규표현 다음 내용의 글들을 찾아라!
+                $options: "i" //mongodb 정규표현 덜 민감하게 찾는다
+
+              }
+            }, //posts부분에서 찾아라
+            "posts").populate({
+              path: "posts",
+              options: {
+                sort: {
+                  'date': -1
+                }
+              }
             });
 
-          case 2:
-            postFindResult = _context2.sent;
-            _context2.next = 5;
-            return _category["default"].find();
+          case 3:
+            result = _context2.sent;
+            //posts 저장
+            console.log(result, "Category Find result");
+            res.send(result);
+            _context2.next = 12;
+            break;
 
-          case 5:
-            categoryFindResult = _context2.sent;
-            result = {
-              postFindResult: postFindResult,
-              categoryFindResult: categoryFindResult
-            };
-            res.json(result);
-            console.log(postFindResult, "All Post Get"); //res.json(postFindResult);
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0, "에러있다고?");
+            next(_context2.t0);
 
-          case 9:
+          case 12:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2);
+    }, _callee2, null, [[0, 8]]);
   }));
 
   return function (_x4, _x5) {

@@ -15,8 +15,6 @@ import jQuery from "jquery"
 import Main_Page_1 from "./Mainpages/Mainpage_1"
 import Main_Page_2 from "./Mainpages/Main_Page_2"
 import Main_Page_3 from "./Mainpages/Main_Page_3"
-import BouncingBall from "./Mainpages/Bouncing/Bouncing"
-
 
 
 window.$ = window.jQuery = jQuery;
