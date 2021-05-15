@@ -67,17 +67,19 @@ _mongoose["default"].connect(MONGO_URI, {
 app.use("/api/post", _post["default"]);
 app.use("/api/user", _user["default"]);
 app.use("/api/auth", _auth["default"]);
-app.use("/api/search", _search["default"]); // if(prod) {
-//   console.log("테스트중입니다.");
-//   app.use(express.static(path.join(__dirname, "../client/build")))
-//   console.log("테스트중입니다.");
-//   app.get("*", (req,res) => {
-//     console.log("인덱스 일하는 중1");
-//     res.sendFile(path.resolve(__dirname, "../client/build", "index.html"))
-//     console.log("인덱스 일하는 중2");
-//   })
-//   console.log("테스트중입니다.");
-// }
+app.use("/api/search", _search["default"]);
+
+if (prod) {
+  console.log("테스트중입니다.");
+  app.use(_express["default"]["static"](_path["default"].join(__dirname, "../client/build")));
+  console.log("테스트중입니다.");
+  app.get("*", function (req, res) {
+    console.log("인덱스 일하는 중1");
+    res.sendFile(_path["default"].resolve(__dirname, "../client/build", "index.html"));
+    console.log("인덱스 일하는 중2");
+  });
+  console.log("테스트중입니다.");
+}
 
 var _default = app;
 exports["default"] = _default;
