@@ -40,17 +40,17 @@ app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/search", searchRoutes);
 
-// if(prod) {
-//   console.log("테스트중입니다.");
-//   app.use(express.static(path.join(__dirname, "../client/build")))
-//   console.log("테스트중입니다.");
-//   app.get("*", (req,res) => {
-//     console.log("인덱스 일하는 중1");
-//     res.sendFile(path.resolve(__dirname, "../client/build", "index.html"))
-//     console.log("인덱스 일하는 중2");
-//   })
-//   console.log("테스트중입니다.");
+if(prod) {
+  console.log("테스트중입니다.");
+  app.use(express.static(path.join(__dirname, "../client/build")))
+  console.log("테스트중입니다.");
+  app.get("*", (req,res) => {
+    console.log("인덱스 일하는 중1");
+    res.sendFile(path.resolve(__dirname, "../client/build", "index.html"))
+    console.log("인덱스 일하는 중2");
+  })
+  console.log("테스트중입니다.");
 
-// }
+}
 
 export default app;
